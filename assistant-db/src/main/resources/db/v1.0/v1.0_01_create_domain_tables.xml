@@ -1,0 +1,17 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <!-- Add columns to table -->
+    <changeSet id="2019_12_17_add-initial-columns-to-assistant" author="Oleg_Kaluzny">
+        <addColumn tableName="${schema}_${table.name}">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="manufacturer" type="VARCHAR(50)"/>
+            <column name="model" type="VARCHAR(50)"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

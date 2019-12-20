@@ -2,10 +2,11 @@ package com.kaluzny.assistant.api.resource;
 
 import com.kaluzny.assistant.api.model.dto.TruckDto;
 import com.kaluzny.assistant.api.model.dto.TruckUpdateDto;
-import io.swagger.annotations.*;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import io.swagger.annotations.*;
 import javax.validation.constraints.NotNull;
 
 /**

@@ -6,6 +6,7 @@ import com.kaluzny.assistant.api.resource.TruckResource;
 import com.kaluzny.assistant.app.converter.TruckConverter;
 import com.kaluzny.assistant.app.domain.Truck;
 import com.kaluzny.assistant.app.service.TruckService;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

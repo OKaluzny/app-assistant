@@ -1,6 +1,5 @@
 package com.kaluzny.assistant.api.model.dto;
 
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;

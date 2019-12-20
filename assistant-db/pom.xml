@@ -13,5 +13,44 @@
     <artifactId>assistant-db</artifactId>
     <packaging>jar</packaging>
 
+    <properties>
+        <liquibase.host>localhost</liquibase.host>
+        <liquibase.port>5432</liquibase.port>
+        <liquibase.db>ib</liquibase.db>
+        <liquibase.schema>ec_cti</liquibase.schema>
+        <liquibase.prefix>ec_cti</liquibase.prefix>
+        <liquibase.user>ec_cti</liquibase.user>
+        <liquibase.password>ec_cti</liquibase.password>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>${liquibase.version}</version>
+                <configuration>
+                    <outputFileEncoding>UTF-8</outputFileEncoding>
+                    <driver>org.postgresql.Driver</driver>
+                    <url>jdbc:postgresql://${liquibase.host}:${liquibase.port}/${liquibase.db}?currentSchema=${liquibase.schema}</url>
+                    <username>${liquibase.user}</username>
+                    <password>${liquibase.password}</password>
+                    <changeLogFile>db/database_ec_cti_changelog.xml</changeLogFile>
+                    <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

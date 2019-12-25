@@ -7,8 +7,8 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <property name="general_tablespace" value="pg_default"/>
-    <property name="schema" value="ms_it"/>
-    <property name="prefix" value="ms_it"/>
+    <property name="schema" value="ms_assistant"/>
+    <property name="prefix" value="ms_assistant"/>
     <property name="table.name" value="trucks"/>
 
     <include file="db/v1.0/v1.0_cumulative.xml"/>

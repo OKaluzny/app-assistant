@@ -1,0 +1,17 @@
+# Spring Boot configuration
+spring:
+  # Database
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/it?curentSchema=ms_assistant
+    username: ms_assistant
+    password: ms_assistant
+  # JPA properties
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+# Server configuration
+server:
+  port: 8080

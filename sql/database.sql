@@ -4,6 +4,7 @@ CREATE USER ms_assistant WITH password 'ms_assistant';
 -- schema user
 CREATE USER ms_assistant_ms WITH password 'ms_assistant_ms';
 
+
 -- create schema
 CREATE SCHEMA ms_assistant AUTHORIZATION ms_assistant;
 

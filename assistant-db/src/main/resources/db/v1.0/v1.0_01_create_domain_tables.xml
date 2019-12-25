@@ -3,15 +3,37 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
+    <property name="schema" value="ms_assistant"/>
+    <property name="table.name" value="trucks"/>
+
     <!-- Add columns to table -->
-    <changeSet id="2019_12_17_add-initial-columns-to-assistant" author="Oleg_Kaluzny">
-        <addColumn tableName="${schema}_${table.name}">
+    <changeSet author="Oleg_Kaluzny" id="Create trucks table_01">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="${prefix}_${table.name}"/>
+            </not>
+        </preConditions>
+        <createTable tableName="${prefix}_${table.name}">
             <column name="id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
             <column name="manufacturer" type="VARCHAR(50)"/>
             <column name="model" type="VARCHAR(50)"/>
-        </addColumn>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Oleg_Kaluzny" id="Create trucks table_02">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="${prefix}_${table.name}"/>
+            <not>
+                <primaryKeyExists primaryKeyName="${prefix}_${table.name}_pk"
+                                  tableName="${prefix}_${table.name}"/>
+            </not>
+        </preConditions>
+
+        <addPrimaryKey columnNames="id"
+                       constraintName="${prefix}_${table.name}_pk"
+                       tableName="${prefix}_${table.name}"/>
     </changeSet>
 
 </databaseChangeLog>

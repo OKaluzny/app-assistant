@@ -42,7 +42,9 @@
                 <configuration>
                     <outputFileEncoding>UTF-8</outputFileEncoding>
                     <driver>org.postgresql.Driver</driver>
-                    <url>jdbc:postgresql://${liquibase.host}:${liquibase.port}/${liquibase.db}?currentSchema=${liquibase.schema}</url>
+                    <url>
+                        jdbc:postgresql://${liquibase.host}:${liquibase.port}/${liquibase.db}?currentSchema=${liquibase.schema}
+                    </url>
                     <username>${liquibase.user}</username>
                     <password>${liquibase.password}</password>
                     <changeLogFile>db/database_ms_it_changelog.xml</changeLogFile>

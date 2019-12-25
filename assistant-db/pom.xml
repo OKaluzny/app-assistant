@@ -9,18 +9,17 @@
         <version>0.0.0.1</version>
     </parent>
 
-
     <artifactId>assistant-db</artifactId>
     <packaging>jar</packaging>
 
     <properties>
         <liquibase.host>localhost</liquibase.host>
         <liquibase.port>5432</liquibase.port>
-        <liquibase.db>ib</liquibase.db>
-        <liquibase.schema>ec_cti</liquibase.schema>
-        <liquibase.prefix>ec_cti</liquibase.prefix>
-        <liquibase.user>ec_cti</liquibase.user>
-        <liquibase.password>ec_cti</liquibase.password>
+        <liquibase.db>it</liquibase.db>
+        <liquibase.schema>ms_assistant</liquibase.schema>
+        <liquibase.prefix>ms_assistant</liquibase.prefix>
+        <liquibase.user>ms_assistant</liquibase.user>
+        <liquibase.password>ms_assistant</liquibase.password>
     </properties>
 
     <dependencies>
@@ -46,7 +45,7 @@
                     <url>jdbc:postgresql://${liquibase.host}:${liquibase.port}/${liquibase.db}?currentSchema=${liquibase.schema}</url>
                     <username>${liquibase.user}</username>
                     <password>${liquibase.password}</password>
-                    <changeLogFile>db/database_ec_cti_changelog.xml</changeLogFile>
+                    <changeLogFile>db/database_ms_it_changelog.xml</changeLogFile>
                     <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
                 </configuration>
             </plugin>

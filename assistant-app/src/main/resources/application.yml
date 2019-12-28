@@ -10,8 +10,17 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: none
-    show-sql: true
+      ddl-auto: none #so that Hibernate does not perform any modification actions
+    show-sql: false
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db\database_changelog.xml
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+
 # Server configuration
 server:
   port: 8080
+

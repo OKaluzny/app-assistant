@@ -3,8 +3,8 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-    <property name="schema" value="ms_assistant"/>
-    <property name="table.name" value="trucks"/>
+   <!-- <property name="schema" value="ms_assistant"/>
+    <property name="table.name" value="trucks"/>-->
 
     <!-- Add columns to table -->
     <changeSet author="Oleg_Kaluzny" id="Create trucks table_01">

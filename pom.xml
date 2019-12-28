@@ -35,7 +35,8 @@
         <lombok.version>1.18.10</lombok.version>
 
         <postgresql.version>42.2.9</postgresql.version>
-
+        <!--  Plugin versions -->
+        <surefire.version>2.22.2</surefire.version>
     </properties>
 
     <dependencies>

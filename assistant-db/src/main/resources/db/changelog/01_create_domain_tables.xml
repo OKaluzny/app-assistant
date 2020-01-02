@@ -36,4 +36,17 @@
                        tableName="${prefix}_${table.name}"/>
     </changeSet>
 
+    <changeSet author="Oleg_Kaluzny" id="Create trucks table_05">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="${prefix}_${table.name}_id_seq"/>
+            </not>
+        </preConditions>
+        <createSequence sequenceName="${prefix}_${table.name}_id_seq"/>
+    </changeSet>
+
+    <changeSet author="Oleg_Kaluzny" id="Create trucks table_04">
+        <createSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+
 </databaseChangeLog>

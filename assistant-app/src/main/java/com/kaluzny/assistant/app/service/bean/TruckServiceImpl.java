@@ -26,7 +26,7 @@ public class TruckServiceImpl implements TruckService {
     public Truck create(Truck requestForSave) {
         log.debug("create() - start: requestForSave = {}", requestForSave);
         Truck entity = repository.save(requestForSave);
-        log.debug("create() - end: entity = {}", entity);
+        log.info("create() - end: entity = {}", entity);
         return entity;
     }
 

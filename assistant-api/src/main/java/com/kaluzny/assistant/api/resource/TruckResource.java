@@ -2,6 +2,7 @@ package com.kaluzny.assistant.api.resource;
 
 import com.kaluzny.assistant.api.model.dto.TruckDto;
 import com.kaluzny.assistant.api.model.dto.TruckUpdateDto;
+import com.kaluzny.assistant.app.domain.Truck;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,7 +40,7 @@ public interface TruckResource {
      * @return searched Truck.
      */
     @ApiOperation(value = "Endpoint to get Truck by id", response = TruckDto.class)
-    @ApiResponse(code = 200, message = "Truck received")
+    @ApiResponse(code = 200, message = "Success", response = Truck.class)
     TruckDto getTruckById(
             @ApiParam("Unique identifier a Truck") @PathVariable @NotNull Long id);
 

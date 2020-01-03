@@ -1,4 +1,4 @@
-package com.kaluzny.assistant.app.converter;
+package com.kaluzny.assistant.app.utils.converter;
 
 import com.kaluzny.assistant.api.model.dto.TruckDto;
 import com.kaluzny.assistant.app.domain.Truck;

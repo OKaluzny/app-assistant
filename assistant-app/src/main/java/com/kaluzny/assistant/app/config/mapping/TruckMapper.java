@@ -1,4 +1,4 @@
-package com.kaluzny.assistant.app.mappers;
+package com.kaluzny.assistant.app.config.mapping;
 
 import com.kaluzny.assistant.api.model.dto.TruckDto;
 import com.kaluzny.assistant.app.domain.Truck;

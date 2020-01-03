@@ -3,7 +3,7 @@ package com.kaluzny.assistant.app.resource;
 import com.kaluzny.assistant.api.model.dto.TruckDto;
 import com.kaluzny.assistant.api.model.dto.TruckUpdateDto;
 import com.kaluzny.assistant.api.resource.TruckResource;
-import com.kaluzny.assistant.app.converter.TruckConverter;
+import com.kaluzny.assistant.app.utils.converter.TruckConverter;
 import com.kaluzny.assistant.app.domain.Truck;
 import com.kaluzny.assistant.app.service.TruckService;
 

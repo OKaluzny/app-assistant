@@ -40,7 +40,6 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>${liquibase.version}</version>
                 <configuration>
-
                     <propertyFileWillOverride>true</propertyFileWillOverride>
                     <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
                     <outputFileEncoding>UTF-8</outputFileEncoding>
@@ -52,7 +51,6 @@
                     <password>${liquibase.password}</password>
                     <changeLogFile>db/database_changelog.xml</changeLogFile>
                 </configuration>
-
                <!-- <executions>
                     <execution>
                         <phase>process-resources</phase>
@@ -64,5 +62,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

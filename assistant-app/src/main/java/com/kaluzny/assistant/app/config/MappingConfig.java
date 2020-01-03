@@ -3,9 +3,11 @@ package com.kaluzny.assistant.app.config;
 import com.kaluzny.assistant.api.model.dto.TruckDto;
 import com.kaluzny.assistant.app.domain.Truck;
 import com.kaluzny.assistant.app.mappers.TruckMapper;
+
+import org.springframework.context.annotation.Configuration;
+
 import ma.glasnost.orika.MapperFactory;
 import net.rakugakibox.spring.boot.orika.OrikaMapperFactoryConfigurer;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * Orika mapping config.

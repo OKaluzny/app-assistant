@@ -3,12 +3,11 @@ package com.kaluzny.assistant.app.service.bean;
 import com.kaluzny.assistant.app.domain.Truck;
 import com.kaluzny.assistant.app.repository.TruckRepository;
 import com.kaluzny.assistant.app.service.TruckService;
-
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * TruckServiceImpl
@@ -37,5 +36,12 @@ public class TruckServiceImpl implements TruckService {
                 .orElseThrow(() -> new EntityNotFoundException("Entity with id = Not found"));
         log.info("findById() - end: entity = {}", entity.getId());
         return entity;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        log.debug("deleteById() - start: id = {}", id);
+        repository.deleteById(id);
+        log.debug("deleteById() - end");
     }
 }

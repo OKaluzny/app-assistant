@@ -3,10 +3,9 @@ package com.kaluzny.assistant.app.resource;
 import com.kaluzny.assistant.api.model.dto.TruckDto;
 import com.kaluzny.assistant.api.model.dto.TruckUpdateDto;
 import com.kaluzny.assistant.api.resource.TruckResource;
-import com.kaluzny.assistant.app.utils.converter.TruckConverter;
 import com.kaluzny.assistant.app.domain.Truck;
 import com.kaluzny.assistant.app.service.TruckService;
-
+import com.kaluzny.assistant.app.utils.converter.TruckConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -48,5 +47,14 @@ public class TruckResourceImpl implements TruckResource {
         TruckDto dto = converter.toDto(entity);
         log.debug("getTruckById() - end: dto = {}", dto.getId());
         return dto;
+    }
+
+    @DeleteMapping("/trucks/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Override
+    public void deleteTruckById(@PathVariable("id") Long id) {
+        log.debug("deleteTruckById() - start: id = {}", id);
+        service.deleteById(id);
+        log.debug("deleteTruckById() - end");
     }
 }

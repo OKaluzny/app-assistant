@@ -24,4 +24,11 @@ public interface TruckService {
      * @return DTO representation for searched truck.
      */
     Truck findById(final Long id);
+
+    /**
+     * Delete existing truck by id.
+     *
+     * @param id Truck's id.
+     */
+    void  deleteById(final Long id);
 }

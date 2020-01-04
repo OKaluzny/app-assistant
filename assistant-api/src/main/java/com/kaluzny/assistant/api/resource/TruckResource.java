@@ -2,11 +2,10 @@ package com.kaluzny.assistant.api.resource;
 
 import com.kaluzny.assistant.api.model.dto.TruckDto;
 import com.kaluzny.assistant.api.model.dto.TruckUpdateDto;
-
+import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import io.swagger.annotations.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -42,5 +41,14 @@ public interface TruckResource {
     @ApiResponse(code = 200, message = "Success")
     TruckDto getTruckById(
             @ApiParam("Unique identifier a Truck") @PathVariable @NotNull Long id);
+
+    /**
+     * REST endpoint to delete Truck.
+     *
+     * @return deleted truck.
+     */
+    @ApiOperation(value = "Endpoint to delete Truck by id", response = TruckDto.class)
+    void deleteTruckById(
+            @ApiParam("Truck id") @PathVariable @NotNull Long id);
 
 }

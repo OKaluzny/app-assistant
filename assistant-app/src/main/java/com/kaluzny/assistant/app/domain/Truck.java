@@ -17,7 +17,7 @@ public class Truck {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "trucks_seq")
-    @SequenceGenerator(name = "trucks_seq", sequenceName = "trucks_seq")
+    @SequenceGenerator(name = "trucks_seq", sequenceName = "trucks_seq", allocationSize = 1)
     private Long id;
     private String manufacturer;
     private String model;

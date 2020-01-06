@@ -3,10 +3,7 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-   <!-- <property name="schema" value="ms_assistant"/>
-    <property name="table.name" value="trucks"/>-->
-
-    <!-- Add columns to table -->
+    <!--==========================================================================================-->
     <changeSet author="Oleg_Kaluzny" id="Create trucks table_01">
         <preConditions onFail="MARK_RAN">
             <not>
@@ -21,7 +18,7 @@
             <column name="model" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
-
+    <!--==========================================================================================-->
     <changeSet author="Oleg_Kaluzny" id="Create trucks table_02">
         <preConditions onFail="MARK_RAN">
             <tableExists tableName="${prefix}_${table.name}"/>
@@ -35,8 +32,8 @@
                        constraintName="${prefix}_${table.name}_pk"
                        tableName="${prefix}_${table.name}"/>
     </changeSet>
-
-    <changeSet author="Oleg_Kaluzny" id="Create trucks table_05">
+    <!--==========================================================================================-->
+    <changeSet author="Oleg_Kaluzny" id="Create trucks table_03">
         <preConditions onFail="MARK_RAN">
             <not>
                 <sequenceExists sequenceName="${prefix}_${table.name}_id_seq"/>
@@ -44,9 +41,9 @@
         </preConditions>
         <createSequence sequenceName="${prefix}_${table.name}_id_seq"/>
     </changeSet>
-
+    <!--==========================================================================================-->
     <changeSet author="Oleg_Kaluzny" id="Create trucks table_04">
         <createSequence sequenceName="hibernate_sequence"/>
     </changeSet>
-
+    <!--==========================================================================================-->
 </databaseChangeLog>

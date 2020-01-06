@@ -8,7 +8,7 @@
 
     <property name="general_tablespace" value="pg_default"/>
     <property name="schema" value="ms_assistant"/>
-    <property name="prefix" value="ms_assistant"/>
+    <property name="prefix" value="ms"/>
     <property name="table.name" value="trucks"/>
 
     <include file="db/changelog/cumulative.xml"/>

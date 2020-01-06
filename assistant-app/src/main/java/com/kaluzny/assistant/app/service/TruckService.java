@@ -2,6 +2,10 @@ package com.kaluzny.assistant.app.service;
 
 import com.kaluzny.assistant.api.model.dto.TruckDto;
 import com.kaluzny.assistant.app.domain.Truck;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import lombok.NonNull;
 
 /**
@@ -18,6 +22,14 @@ public interface TruckService {
     Truck create(@NonNull Truck requestForSave);
 
     /**
+     * Get page of trucks.
+     *
+     * @param pageable page request details
+     * @return DTO representation of searched trucks.
+     */
+    Page<Truck> getPage(Pageable pageable);
+
+    /**
      * Get truck by ID.
      *
      * @param id truck's id.
@@ -30,5 +42,5 @@ public interface TruckService {
      *
      * @param id Truck's id.
      */
-    void  deleteById(final Long id);
+    void deleteById(final Long id);
 }

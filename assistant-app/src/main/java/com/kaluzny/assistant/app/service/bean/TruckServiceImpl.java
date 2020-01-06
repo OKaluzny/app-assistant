@@ -3,11 +3,14 @@ package com.kaluzny.assistant.app.service.bean;
 import com.kaluzny.assistant.app.domain.Truck;
 import com.kaluzny.assistant.app.repository.TruckRepository;
 import com.kaluzny.assistant.app.service.TruckService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * TruckServiceImpl
@@ -27,6 +30,14 @@ public class TruckServiceImpl implements TruckService {
         Truck entity = repository.save(requestForSave);
         log.info("create() - end: entity = {}", entity);
         return entity;
+    }
+
+    @Override
+    public Page<Truck> getPage(Pageable pageable) {
+        log.debug("getPage() - start: pageable = {}", pageable);
+        Page<Truck> page = repository.findAll(pageable);
+        log.debug("getPage() - end: page = {}", page);
+        return page;
     }
 
     @Override

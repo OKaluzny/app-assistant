@@ -11,6 +11,9 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: none #so that Hibernate does not perform any modification actions
+      naming:
+        physical-strategy: com.kaluzny.assistant.app.repository.PhysicalNamingStrategy
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
     show-sql: false
 
   liquibase:
@@ -22,5 +25,4 @@ spring:
 
 # Server configuration
 server:
-  port: 8080
-
+  port: 8088 # set your port.

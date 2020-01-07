@@ -38,6 +38,14 @@ public interface TruckService {
     Truck findById(final Long id);
 
     /**
+     * Update existing Truck.
+     *
+     * @param truck {@link Truck }.
+     * @return representation for updated truck.
+     */
+    Truck update(Truck truck);
+
+    /**
      * Delete existing truck by id.
      *
      * @param id Truck's id.

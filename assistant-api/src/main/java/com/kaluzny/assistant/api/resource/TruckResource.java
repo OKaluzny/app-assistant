@@ -2,14 +2,13 @@ package com.kaluzny.assistant.api.resource;
 
 import com.kaluzny.assistant.api.model.dto.TruckDto;
 import com.kaluzny.assistant.api.model.dto.TruckUpdateDto;
-
+import io.swagger.annotations.*;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.Collection;
-import io.swagger.annotations.*;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 
 /**
  * CRUD REST API service for microservice-assistant.
@@ -60,6 +59,18 @@ public interface TruckResource {
                             + "Multiple sort criteria are supported.")
     })
     Collection<TruckDto> getPage(PageRequest pageable);
+
+    /**
+     * REST endpoint to update Truck by id.
+     *
+     * @param id               Truck's id.
+     * @param requestForUpdate truck {@link TruckDto}.
+     * @return updated truck.
+     */
+    @ApiOperation(value = "Endpoint to update Truck", response = TruckDto.class)
+    TruckDto updateTruck(
+            @ApiParam("Truck id") @NotNull Long id,
+            @ApiParam("Truck") @NotNull TruckUpdateDto requestForUpdate);
 
     /**
      * REST endpoint to delete Truck.

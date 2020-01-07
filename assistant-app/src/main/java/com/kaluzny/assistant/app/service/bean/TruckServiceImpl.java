@@ -50,6 +50,20 @@ public class TruckServiceImpl implements TruckService {
     }
 
     @Override
+    public Truck update(Truck truck) {
+        log.debug("update() - start: truck = {}", truck);
+        Truck updatedEntity = repository.findById(truck.getId())
+                .map(entity -> {
+                    entity.setManufacturer(truck.getManufacturer());
+                    entity.setModel(truck.getModel());
+                    return repository.save(entity);
+                })
+                .orElseThrow(() -> new EntityNotFoundException("truck with id = Not found"));
+        log.info("update() - end: entity = {}", updatedEntity.getId());
+        return updatedEntity;
+    }
+
+    @Override
     public void deleteById(Long id) {
         log.debug("deleteById() - start: id = {}", id);
         repository.deleteById(id);

@@ -1,4 +1,4 @@
-package com.kaluzny.assistant.app.utils.converter;
+package com.kaluzny.assistant.app.utils;
 
 import org.springframework.core.MethodParameter;
 import org.springframework.data.domain.PageRequest;

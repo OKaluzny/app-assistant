@@ -1,6 +1,6 @@
 package com.kaluzny.assistant.app.config;
 
-import com.kaluzny.assistant.app.utils.converter.PageRequestArgumentResolver;
+import com.kaluzny.assistant.app.utils.PageRequestArgumentResolver;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;

@@ -26,3 +26,5 @@ spring:
 # Server configuration
 server:
   port: 8088 # set your port.
+  servlet:
+    context-path: /api

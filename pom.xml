@@ -32,6 +32,7 @@
         <orika.version>1.5.4</orika.version>
         <liquibase.version>3.8.3</liquibase.version>
         <swagger.version>2.9.2</swagger.version>
+        <openApi.version>1.2.26</openApi.version>
         <lombok.version>1.18.10</lombok.version>
 
         <postgresql.version>42.2.9</postgresql.version>
@@ -82,6 +83,12 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${swagger.version}</version>
+        </dependency>
+        <!-- openAPI (swagger) -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${openApi.version}</version>
         </dependency>
 
         <dependency>

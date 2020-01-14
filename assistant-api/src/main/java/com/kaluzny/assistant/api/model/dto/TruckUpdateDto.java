@@ -1,7 +1,9 @@
 package com.kaluzny.assistant.api.model.dto;
 
 import com.kaluzny.assistant.api.utils.DiffBuilderUtils;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,10 +20,12 @@ import org.apache.commons.lang3.builder.Diffable;
 @Accessors(chain = true)
 public class TruckUpdateDto implements Diffable<TruckUpdateDto> {
 
-    @ApiModelProperty(value = "Manufacturer of a Truck.", example = "Volvo")
+    @Schema(description = "Manufacturer of a Truck.", example = "Volvo", required = true)
+    @Size(max = 50)
     private String manufacturer;
 
-    @ApiModelProperty(value = "Model of a Truck.", example = "FH-16")
+    @Schema(description = "Model of a Truck.", example = "FH-16", required = true)
+    @Size(max = 50)
     private String model;
 
     @Override

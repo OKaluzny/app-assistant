@@ -34,7 +34,6 @@
         <swagger.version>2.9.2</swagger.version>
         <openApi.version>1.2.26</openApi.version>
         <lombok.version>1.18.10</lombok.version>
-
         <postgresql.version>42.2.9</postgresql.version>
         <apache.commons.version>3.9</apache.commons.version>
         <!--  Plugin versions -->
@@ -67,30 +66,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.plugin</groupId>
-            <artifactId>spring-plugin-core</artifactId>
-            <version>1.2.0.RELEASE</version>
-        </dependency>
-        <!-- swagger -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
         <!-- openAPI (swagger) -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>${openApi.version}</version>
         </dependency>
-
         <dependency>
             <groupId>ma.glasnost.orika</groupId>
             <artifactId>orika-core</artifactId>
@@ -120,7 +101,6 @@
             <version>${apache.commons.version}</version>
         </dependency>
 
-
     </dependencies>
 
     <build>
@@ -144,7 +124,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>3.8.1</version>
                 <configuration>
                     <compilerArgs>
                         <arg>-parameters</arg>
@@ -155,7 +135,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.3.1</version>
+                <version>3.1.2</version>
                 <configuration>
                     <archive>
                         <manifest>

@@ -3,14 +3,13 @@ package com.kaluzny.assistant.api.resource;
 import com.kaluzny.assistant.api.model.dto.TruckDto;
 import com.kaluzny.assistant.api.model.dto.TruckUpdateDto;
 import com.kaluzny.assistant.api.model.filter.TruckFilter;
-
+import io.swagger.annotations.*;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.Collection;
-import io.swagger.annotations.*;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 
 /**
  * CRUD REST API service for microservice-assistant.
@@ -47,12 +46,13 @@ public interface TruckResource {
             @ApiParam("Unique identifier a Truck") @PathVariable @NotNull Long id);
 
     /**
-     * Pageable REST endpoint for trucks.
+     * Pageable and filtered REST endpoint for trucks.
      *
      * @param pageable page details.
-     * @return searched documents.
+     * @param filter   filterable attributes.
+     * @return searched trucks.
      */
-    @ApiOperation(value = "Pageable endpoint for trucks", response = TruckDto.class)
+    @ApiOperation(value = "Filterable and pageable endpoint for trucks", response = TruckDto.class)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "page", paramType = "query", value = "Results page you want to retrieve (1..N)."),
             @ApiImplicitParam(name = "count", paramType = "query", value = "Number of records per page."),

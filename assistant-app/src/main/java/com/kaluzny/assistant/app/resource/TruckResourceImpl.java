@@ -50,7 +50,7 @@ public class TruckResourceImpl implements TruckResource {
     @ResponseStatus(HttpStatus.OK)
     @Override
     public Collection<TruckDto> getPage(PageRequest pageable, TruckFilter filter) {
-        log.debug("getPage() - start: pageable = {}", pageable);
+        log.debug("getPage() - start: pageable = {}, filter = {}", pageable, filter);
         Page<Truck> page = service.getPage(pageable, filter);
         List<TruckDto> pageContent = new ArrayList<>();
         for (Truck entity : page

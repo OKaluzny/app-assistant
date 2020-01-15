@@ -38,7 +38,7 @@ public class TruckServiceImpl implements TruckService {
 
     @Override
     public Page<Truck> getPage(Pageable pageable, TruckFilter filter) {
-        log.debug("getPage() - start: pageable = {}", pageable);
+        log.debug("getPage() - start: pageable = {}, filter = {}", pageable, filter);
         Specification<Truck> specification = specificationBuilder.buildFilterSpec(filter);
         Page<Truck> page = repository.findAll(specification, pageable);
         log.debug("getPage() - end: page = {}", page);

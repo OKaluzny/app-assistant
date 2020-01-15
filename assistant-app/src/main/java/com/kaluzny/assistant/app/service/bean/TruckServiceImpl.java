@@ -1,11 +1,14 @@
 package com.kaluzny.assistant.app.service.bean;
 
+import com.kaluzny.assistant.api.model.filter.TruckFilter;
 import com.kaluzny.assistant.app.domain.Truck;
 import com.kaluzny.assistant.app.repository.TruckRepository;
 import com.kaluzny.assistant.app.service.TruckService;
+import com.kaluzny.assistant.app.service.filter.SpecificationBuilder;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -23,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public class TruckServiceImpl implements TruckService {
 
     private final TruckRepository repository;
+    private final SpecificationBuilder specificationBuilder;
 
     @Override
     public Truck create(Truck requestForSave) {
@@ -33,9 +37,10 @@ public class TruckServiceImpl implements TruckService {
     }
 
     @Override
-    public Page<Truck> getPage(Pageable pageable) {
+    public Page<Truck> getPage(Pageable pageable, TruckFilter filter) {
         log.debug("getPage() - start: pageable = {}", pageable);
-        Page<Truck> page = repository.findAll(pageable);
+        Specification<Truck> specification = specificationBuilder.buildFilterSpec(filter);
+        Page<Truck> page = repository.findAll(specification, pageable);
         log.debug("getPage() - end: page = {}", page);
         return page;
     }

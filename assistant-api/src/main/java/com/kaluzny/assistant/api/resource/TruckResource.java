@@ -2,6 +2,7 @@ package com.kaluzny.assistant.api.resource;
 
 import com.kaluzny.assistant.api.model.dto.TruckDto;
 import com.kaluzny.assistant.api.model.dto.TruckUpdateDto;
+import com.kaluzny.assistant.api.model.filter.TruckFilter;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,7 +60,7 @@ public interface TruckResource {
                     value = "Sorting criteria in the format: property (,asc|desc). Default sort order is ascending. "
                             + "Multiple sort criteria are supported.")
     })
-    Collection<TruckDto> getPage(PageRequest pageable);
+    Collection<TruckDto> getPage(PageRequest pageable, TruckFilter filter);
 
     /**
      * REST endpoint to update Truck by id.

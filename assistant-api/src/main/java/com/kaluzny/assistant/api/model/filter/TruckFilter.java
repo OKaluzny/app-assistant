@@ -1,6 +1,7 @@
 package com.kaluzny.assistant.api.model.filter;
 
 import com.kaluzny.assistant.api.model.dto.TruckResponseDto;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
 

@@ -2,6 +2,7 @@ package com.kaluzny.assistant.app.resource;
 
 import com.kaluzny.assistant.api.model.dto.TruckDto;
 import com.kaluzny.assistant.api.model.dto.TruckUpdateDto;
+import com.kaluzny.assistant.api.model.filter.TruckFilter;
 import com.kaluzny.assistant.api.resource.TruckResource;
 import com.kaluzny.assistant.app.domain.Truck;
 import com.kaluzny.assistant.app.service.TruckService;
@@ -48,9 +49,9 @@ public class TruckResourceImpl implements TruckResource {
     @GetMapping("/trucks")
     @ResponseStatus(HttpStatus.OK)
     @Override
-    public Collection<TruckDto> getPage(PageRequest pageable) {
+    public Collection<TruckDto> getPage(PageRequest pageable, TruckFilter filter) {
         log.debug("getPage() - start: pageable = {}", pageable);
-        Page<Truck> page = service.getPage(pageable);
+        Page<Truck> page = service.getPage(pageable, filter);
         List<TruckDto> pageContent = new ArrayList<>();
         for (Truck entity : page
                 .getContent()) {

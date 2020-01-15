@@ -1,5 +1,6 @@
 package com.kaluzny.assistant.app.service;
 
+import com.kaluzny.assistant.api.model.filter.TruckFilter;
 import com.kaluzny.assistant.app.domain.Truck;
 
 import org.springframework.data.domain.Page;
@@ -24,9 +25,10 @@ public interface TruckService {
      * Get page of trucks.
      *
      * @param pageable page request details
+     * @param filter   filters to apply
      * @return DTO representation of searched trucks.
      */
-    Page<Truck> getPage(final Pageable pageable);
+    Page<Truck> getPage(final Pageable pageable, final TruckFilter filter);
 
     /**
      * Get truck by ID.

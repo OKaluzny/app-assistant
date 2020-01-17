@@ -104,11 +104,10 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${apache.commons.version}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
-    <build>
 
+    <build>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -129,18 +128,27 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
-                <configuration>
+                <version>3.8.0</version>
+                <!--<configuration>
                     <compilerArgs>
                         <arg>-parameters</arg>
                     </compilerArgs>
-                </configuration>
+                </configuration>-->
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.3.1</version>
+                <version>3.1.2</version>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <archive>
                         <manifest>
@@ -153,6 +161,68 @@
                     </archive>
                 </configuration>
             </plugin>
+            <!-- Plugin for docker io.fabric8 -->
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.31.0</version>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>${project.artifactId}</name>
+                            <registry>registry.io</registry>
+                            <build>
+                                <from>openjdk:8</from>
+                                <tags>
+                                    <tag>${project.version}</tag>
+                                </tags>
+                                <ports>
+                                    <port>8088</port>
+                                </ports>
+                                <cmd>
+                                    <shell>["java", "-jar", "${project.build.finalName}.jar"]</shell>
+                                </cmd>
+                               <!-- <assembly>
+                                    <basedir>/</basedir>
+                                    <inline>
+                                        <dependencySet>
+                                            <outputDirectory>jars</outputDirectory>
+                                        </dependencySet>
+                                        <files>
+                                            <file>
+                                                <source>${project.build.directory}/${project.build.finalName}.jar</source>
+                                                <outputDirectory>jars</outputDirectory>
+                                            </file>
+                                            <file>
+                                                <source>${project.basedir}/config.yml</source>
+                                                <outputDirectory>/</outputDirectory>
+                                            </file>
+                                        </files>
+                                    </inline>
+                                </assembly>-->
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>docker:build</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>docker:deploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>push</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+            </plugin>
+
         </plugins>
     </build>
 

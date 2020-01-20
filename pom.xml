@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <name>microservice-assistant</name>
     <description>Demo project for Spring Boot</description>
 
@@ -11,12 +11,6 @@
     <version>0.0.0.1</version>
     <packaging>pom</packaging>
 
-    <modules>
-        <module>assistant-api</module>
-        <module>assistant-app</module>
-        <module>assistant-db</module>
-    </modules>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -24,16 +18,25 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <modules>
+        <module>assistant-api</module>
+        <module>assistant-app</module>
+        <module>assistant-db</module>
+    </modules>
+
     <properties>
         <build.number>-1</build.number>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.encoding>UTF-8</project.build.encoding>
+        <project.build.sourceEncoding>${project.build.encoding}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${project.build.encoding}</project.reporting.outputEncoding>
+        <!--  Dependency libraries versions -->
         <orika.version>1.5.4</orika.version>
         <liquibase.version>3.8.3</liquibase.version>
         <swagger.version>2.9.2</swagger.version>
         <lombok.version>1.18.10</lombok.version>
-
         <postgresql.version>42.2.9</postgresql.version>
         <apache.commons.version>3.9</apache.commons.version>
         <!--  Plugin versions -->
@@ -47,18 +50,6 @@
                 <artifactId>orika-spring-boot-starter</artifactId>
                 <version>1.9.0</version>
             </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
-                <scope>test</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.junit.vintage</groupId>
-                        <artifactId>junit-vintage-engine</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
             <dependency>
                 <groupId>org.springframework.plugin</groupId>
                 <artifactId>spring-plugin-core</artifactId>
@@ -104,6 +95,17 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${apache.commons.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.junit.vintage</groupId>
+                        <artifactId>junit-vintage-engine</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -129,26 +131,17 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
-                <!--<configuration>
+                <configuration>
                     <compilerArgs>
                         <arg>-parameters</arg>
                     </compilerArgs>
-                </configuration>-->
+                </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.1.2</version>
-                <executions>
-                    <execution>
-                        <id>default-jar</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
                 <configuration>
                     <archive>
                         <manifest>
@@ -182,45 +175,47 @@
                                 <cmd>
                                     <shell>["java", "-jar", "${project.build.finalName}.jar"]</shell>
                                 </cmd>
-                               <!-- <assembly>
-                                    <basedir>/</basedir>
-                                    <inline>
-                                        <dependencySet>
-                                            <outputDirectory>jars</outputDirectory>
-                                        </dependencySet>
-                                        <files>
-                                            <file>
-                                                <source>${project.build.directory}/${project.build.finalName}.jar</source>
-                                                <outputDirectory>jars</outputDirectory>
-                                            </file>
-                                            <file>
-                                                <source>${project.basedir}/config.yml</source>
-                                                <outputDirectory>/</outputDirectory>
-                                            </file>
-                                        </files>
-                                    </inline>
-                                </assembly>-->
+                                <!-- <assembly>
+                                     <basedir>/</basedir>
+                                     <inline>
+                                         <dependencySet>
+                                             <outputDirectory>jars</outputDirectory>
+                                         </dependencySet>
+                                         <files>
+                                             <file>
+                                                 <source>${project.build.directory}/${project.build.finalName}.jar</source>
+                                                 <outputDirectory>jars</outputDirectory>
+                                             </file>
+                                             <file>
+                                                 <source>${project.basedir}/config.yml</source>
+                                                 <outputDirectory>/</outputDirectory>
+                                             </file>
+                                         </files>
+                                     </inline>
+                                 </assembly>-->
                             </build>
                         </image>
                     </images>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>docker:build</id>
-                        <phase>package</phase>
+                        <id>start</id>
+                        <phase>pre-integration-test</phase>
                         <goals>
+                            <!-- "build" should be used to create the images with the
+                            artifact -->
                             <goal>build</goal>
+                            <goal>start</goal>
                         </goals>
                     </execution>
                     <execution>
-                        <id>docker:deploy</id>
-                        <phase>deploy</phase>
+                        <id>stop</id>
+                        <phase>post-integration-test</phase>
                         <goals>
-                            <goal>push</goal>
+                            <goal>stop</goal>
                         </goals>
                     </execution>
                 </executions>
-
             </plugin>
 
         </plugins>

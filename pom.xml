@@ -26,14 +26,18 @@
 
     <properties>
         <build.number>-1</build.number>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.8</java.version>
 
+        <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.encoding>UTF-8</project.build.encoding>
+        <project.build.sourceEncoding>${project.build.encoding}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${project.build.encoding}</project.reporting.outputEncoding>
+        <!--  Dependency libraries versions -->
         <orika.version>1.5.4</orika.version>
         <liquibase.version>3.8.3</liquibase.version>
         <swagger.version>2.9.2</swagger.version>
         <lombok.version>1.18.10</lombok.version>
-
         <postgresql.version>42.2.9</postgresql.version>
         <apache.commons.version>3.9</apache.commons.version>
         <!--  Plugin versions -->
@@ -129,26 +133,17 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
-                <!--<configuration>
+                <configuration>
                     <compilerArgs>
                         <arg>-parameters</arg>
                     </compilerArgs>
-                </configuration>-->
+                </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.1.2</version>
-                <executions>
-                    <execution>
-                        <id>default-jar</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
                 <configuration>
                     <archive>
                         <manifest>
@@ -182,45 +177,47 @@
                                 <cmd>
                                     <shell>["java", "-jar", "${project.build.finalName}.jar"]</shell>
                                 </cmd>
-                               <!-- <assembly>
-                                    <basedir>/</basedir>
-                                    <inline>
-                                        <dependencySet>
-                                            <outputDirectory>jars</outputDirectory>
-                                        </dependencySet>
-                                        <files>
-                                            <file>
-                                                <source>${project.build.directory}/${project.build.finalName}.jar</source>
-                                                <outputDirectory>jars</outputDirectory>
-                                            </file>
-                                            <file>
-                                                <source>${project.basedir}/config.yml</source>
-                                                <outputDirectory>/</outputDirectory>
-                                            </file>
-                                        </files>
-                                    </inline>
-                                </assembly>-->
+                                <!-- <assembly>
+                                     <basedir>/</basedir>
+                                     <inline>
+                                         <dependencySet>
+                                             <outputDirectory>jars</outputDirectory>
+                                         </dependencySet>
+                                         <files>
+                                             <file>
+                                                 <source>${project.build.directory}/${project.build.finalName}.jar</source>
+                                                 <outputDirectory>jars</outputDirectory>
+                                             </file>
+                                             <file>
+                                                 <source>${project.basedir}/config.yml</source>
+                                                 <outputDirectory>/</outputDirectory>
+                                             </file>
+                                         </files>
+                                     </inline>
+                                 </assembly>-->
                             </build>
                         </image>
                     </images>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>docker:build</id>
-                        <phase>package</phase>
+                        <id>start</id>
+                        <phase>pre-integration-test</phase>
                         <goals>
+                            <!-- "build" should be used to create the images with the
+                            artifact -->
                             <goal>build</goal>
+                            <goal>start</goal>
                         </goals>
                     </execution>
                     <execution>
-                        <id>docker:deploy</id>
-                        <phase>deploy</phase>
+                        <id>stop</id>
+                        <phase>post-integration-test</phase>
                         <goals>
-                            <goal>push</goal>
+                            <goal>stop</goal>
                         </goals>
                     </execution>
                 </executions>
-
             </plugin>
 
         </plugins>

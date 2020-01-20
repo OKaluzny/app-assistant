@@ -3,7 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <name>microservice-assistant</name>
     <description>Demo project for Spring Boot</description>
 
@@ -38,7 +37,6 @@
         <liquibase.version>3.8.3</liquibase.version>
         <swagger.version>2.9.2</swagger.version>
         <lombok.version>1.18.10</lombok.version>
-
         <postgresql.version>42.2.9</postgresql.version>
         <apache.commons.version>3.9</apache.commons.version>
         <!--  Plugin versions -->
@@ -219,7 +217,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 

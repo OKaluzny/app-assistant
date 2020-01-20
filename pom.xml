@@ -26,14 +26,18 @@
 
     <properties>
         <build.number>-1</build.number>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.8</java.version>
 
+        <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.encoding>UTF-8</project.build.encoding>
+        <project.build.sourceEncoding>${project.build.encoding}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${project.build.encoding}</project.reporting.outputEncoding>
+        <!--  Dependency libraries versions -->
         <orika.version>1.5.4</orika.version>
         <liquibase.version>3.8.3</liquibase.version>
         <swagger.version>2.9.2</swagger.version>
         <lombok.version>1.18.10</lombok.version>
-
         <postgresql.version>42.2.9</postgresql.version>
         <apache.commons.version>3.9</apache.commons.version>
         <!--  Plugin versions -->
@@ -104,11 +108,10 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${apache.commons.version}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
-    <build>
 
+    <build>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -129,7 +132,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>3.8.0</version>
                 <configuration>
                     <compilerArgs>
                         <arg>-parameters</arg>
@@ -140,7 +143,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.3.1</version>
+                <version>3.1.2</version>
                 <configuration>
                     <archive>
                         <manifest>
@@ -153,6 +156,70 @@
                     </archive>
                 </configuration>
             </plugin>
+            <!-- Plugin for docker io.fabric8 -->
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.31.0</version>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>${project.artifactId}</name>
+                            <registry>registry.io</registry>
+                            <build>
+                                <from>openjdk:8</from>
+                                <tags>
+                                    <tag>${project.version}</tag>
+                                </tags>
+                                <ports>
+                                    <port>8088</port>
+                                </ports>
+                                <cmd>
+                                    <shell>["java", "-jar", "${project.build.finalName}.jar"]</shell>
+                                </cmd>
+                                <!-- <assembly>
+                                     <basedir>/</basedir>
+                                     <inline>
+                                         <dependencySet>
+                                             <outputDirectory>jars</outputDirectory>
+                                         </dependencySet>
+                                         <files>
+                                             <file>
+                                                 <source>${project.build.directory}/${project.build.finalName}.jar</source>
+                                                 <outputDirectory>jars</outputDirectory>
+                                             </file>
+                                             <file>
+                                                 <source>${project.basedir}/config.yml</source>
+                                                 <outputDirectory>/</outputDirectory>
+                                             </file>
+                                         </files>
+                                     </inline>
+                                 </assembly>-->
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <!-- "build" should be used to create the images with the
+                            artifact -->
+                            <goal>build</goal>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>stop</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 

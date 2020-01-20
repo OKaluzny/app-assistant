@@ -3,16 +3,17 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <artifactId>assistant-db</artifactId>
+    <packaging>jar</packaging>
+
     <parent>
         <artifactId>microservice-assistant</artifactId>
         <groupId>com.kaluzny</groupId>
         <version>0.0.0.1</version>
     </parent>
 
-    <artifactId>assistant-db</artifactId>
-    <packaging>jar</packaging>
-
     <properties>
+        <fabric8.profile>${project.artifactId}</fabric8.profile>
         <liquibase.host>localhost</liquibase.host>
         <liquibase.port>5432</liquibase.port>
         <liquibase.db>it</liquibase.db>
@@ -51,14 +52,14 @@
                     <password>${liquibase.password}</password>
                     <changeLogFile>db/database_changelog.xml</changeLogFile>
                 </configuration>
-               <!-- <executions>
-                    <execution>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>update</goal>
-                        </goals>
-                    </execution>
-                </executions>-->
+                <!-- <executions>
+                     <execution>
+                         <phase>process-resources</phase>
+                         <goals>
+                             <goal>update</goal>
+                         </goals>
+                     </execution>
+                 </executions>-->
             </plugin>
         </plugins>
     </build>

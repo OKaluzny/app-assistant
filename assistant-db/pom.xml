@@ -12,17 +12,6 @@
         <version>0.0.0.1</version>
     </parent>
 
-    <properties>
-        <fabric8.profile>${project.artifactId}</fabric8.profile>
-        <liquibase.host>localhost</liquibase.host>
-        <liquibase.port>5432</liquibase.port>
-        <liquibase.db>it</liquibase.db>
-        <liquibase.schema>ms_assistant</liquibase.schema>
-        <liquibase.prefix>ms_assistant</liquibase.prefix>
-        <liquibase.user>ms_assistant</liquibase.user>
-        <liquibase.password>ms_assistant</liquibase.password>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -45,11 +34,11 @@
                     <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
                     <outputFileEncoding>UTF-8</outputFileEncoding>
                     <driver>org.postgresql.Driver</driver>
-                    <url>
-                        jdbc:postgresql://${liquibase.host}:${liquibase.port}/${liquibase.db}?currentSchema=${liquibase.schema}
-                    </url>
-                    <username>${liquibase.user}</username>
-                    <password>${liquibase.password}</password>
+                    <!--For correct works with docker, we need to change "localhost"
+                    to a service name, take from docker-compose.yml "assistant-db" -->
+                    <url>jdbc:postgresql://assistant-db:5432/it?currentSchema=ms_assistant</url>
+                    <username>ms_assistant</username>
+                    <password>ms_assistant</password>
                     <changeLogFile>db/database_changelog.xml</changeLogFile>
                 </configuration>
                 <!-- <executions>

@@ -3,7 +3,8 @@ spring:
   # Database
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/it?curentSchema=ms_assistant
+    # For correct works with docker, we need to change "localhost" to a service name, take from docker-compose.yml
+    url: jdbc:postgresql://assistant-db:5432/it?curentSchema=ms_assistant
     username: ms_assistant
     password: ms_assistant
   # JPA properties

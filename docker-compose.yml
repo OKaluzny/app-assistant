@@ -1,0 +1,55 @@
+# Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
+version: '3.7'
+networks:
+  assistant:
+    name: app
+    driver: bridge
+volumes:
+  postgres-data:
+# Define services
+services:
+  # App backend service
+  assistant-app:
+    build:
+      context: assistant-app
+      dockerfile: src/main/docker/Dockerfile
+    # Give the container the name web-app. You can changes to something else.
+    container_name: assistant-app
+    # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    ports:
+      - "8088:8088"
+    networks:
+      - assistant
+    # This service depends on postgres. Start that first.
+    depends_on:
+      - assistant-db
+  # Database Service (Postgres)
+  assistant-db:
+    # Use the Docker Image postgres. This will pull the 12 version.
+    image: postgres:12
+    # Give the container the name. You can changes to something else.
+    container_name: assistant-db
+    # Set a volume some that database is not lost after shutting down the container.
+    # I used the name postgres-data but you can changed it to something else.
+    volumes:
+      - ./assistant-db/src/main/resources/db/database.sql:/docker-entrypoint-initdb.d/database.sql
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - assistant
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: it
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  liquibase:
+    image: webdevops/liquibase:postgres
+    restart: 'no'
+    networks:
+      - assistant
+    depends_on:
+      - assistant-db
+    volumes:
+      - ./docker/:/scripts/
+    command: /scripts/wait_for_postgres_then_init.sh

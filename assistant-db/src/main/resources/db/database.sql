@@ -1,18 +1,8 @@
--- create db
-CREATE DATABASE it
-    WITH OWNER = postgres
-    ENCODING = 'UTF8'
-    TABLESPACE = pg_default
-
--- connect to db
-CONNECT TO it using postgres;
-
 -- schema owner
 CREATE USER ms_assistant WITH password 'ms_assistant';
 
 -- schema user
 CREATE USER ms_assistant_ms WITH password 'ms_assistant_ms';
-
 
 -- create schema
 CREATE SCHEMA ms_assistant AUTHORIZATION ms_assistant;

@@ -12,10 +12,6 @@
         <version>0.0.0.1</version>
     </parent>
 
-    <properties>
-        <fabric8.profile>${project.artifactId}</fabric8.profile>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

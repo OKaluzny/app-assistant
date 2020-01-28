@@ -1,0 +1,76 @@
+# Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
+version: '3.7'
+networks:
+  assistant:
+    name: app
+  # driver: bridge
+volumes:
+  postgres-data:
+# Define services
+services:
+  #######################
+  # App backend service #
+  #######################
+  #assistant-app:
+  # build:
+  #  context: assistant-app
+  # dockerfile: src/main/docker/Dockerfile
+  # Give the container the name web-app. You can changes to something else.
+  #container_name: assistant-app
+  # Forward the exposed port 8080 on the container to port 8080 on the host machine
+  #ports:
+  # - "8088:8088"
+  #networks:
+  # - assistant
+  # This service depends on postgres. Start that first.
+  #depends_on:
+  # - assistant-db
+  ###############################
+  # Database Service (Postgres) #
+  ###############################
+  assistant-db:
+    image: postgres:12
+    container_name: assistant-db
+#    volumes:
+#      - ./assistant-db/src/main/resources/db/sql/database.sql:/docker-entrypoint-initdb.d/database.sql
+#      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - assistant
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: it
+      POSTGRES_USER: ms_assistant
+      POSTGRES_PASSWORD: ms_assistant
+    restart: always
+  #######################
+  #
+  #####################
+  assistant-migrations:
+    image: kilna/liquibase-postgres
+    container_name: liquibase
+    depends_on:
+      - assistant-db
+    volumes:
+      - ./assistant-db/src/main/resources/db:/db
+    networks:
+      - assistant
+    environment:
+      LIQUIBASE_DATABASE: it
+      LIQUIBASE_CHANGELOG: /db/database_changelog.xml
+      LIQUIBASE_URL: jdbc:postgresql://assistant-db:5432/it
+      LIQUIBASE_USERNAME: ms_assistant
+      LIQUIBASE_PASSWORD: ms_assistant
+      LIQUIBASE_HOST: assistant-db
+    command:
+      - bash
+      - -c
+      - |
+        set -e
+        echo "waiting for the db to be available"
+        until nc -z $$LIQUIBASE_HOST $$LIQUIBASE_PORT; do
+        echo "the db is not available - sleeping"
+        sleep 1
+        done
+        echo "the db is up"
+        liquibase update

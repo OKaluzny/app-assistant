@@ -23,33 +23,33 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.liquibase</groupId>
-                <artifactId>liquibase-maven-plugin</artifactId>
-                <version>${liquibase.version}</version>
-                <configuration>
-                    <propertyFileWillOverride>true</propertyFileWillOverride>
-                    <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
-                    <outputFileEncoding>UTF-8</outputFileEncoding>
-                    <driver>org.postgresql.Driver</driver>
-                    <!--For correct works with docker, we need to change "localhost"
-                    to a service name, take from docker-compose.yml "assistant-db" -->
-                    <url>jdbc:postgresql://localhost:5432/it?currentSchema=ms_assistant</url>
-                    <username>ms_assistant</username>
-                    <password>ms_assistant</password>
-                    <changeLogFile>db/database_changelog.xml</changeLogFile>
-                </configuration>
-                <!-- <executions>
-                     <execution>
-                         <phase>process-resources</phase>
-                         <goals>
-                             <goal>update</goal>
-                         </goals>
-                     </execution>
-                 </executions>-->
-            </plugin>
-        </plugins>
-    </build>
+    <!-- <build>
+         <plugins>
+             <plugin>
+                 <groupId>org.liquibase</groupId>
+                 <artifactId>liquibase-maven-plugin</artifactId>
+                 <version>${liquibase.version}</version>
+                 <configuration>
+                     <propertyFileWillOverride>true</propertyFileWillOverride>
+                     <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+                     <outputFileEncoding>UTF-8</outputFileEncoding>
+                     <driver>org.postgresql.Driver</driver>
+                     &lt;!&ndash;For correct works with docker, we need to change "localhost"
+                     to a service name, take from docker-compose.yml "assistant-db" &ndash;&gt;
+                     <url>jdbc:postgresql://localhost:5432/it?currentSchema=ms_assistant</url>
+                     <username>ms_assistant</username>
+                     <password>ms_assistant</password>
+                     <changeLogFile>db/database_changelog.xml</changeLogFile>
+                 </configuration>
+                 &lt;!&ndash; <executions>
+                      <execution>
+                          <phase>process-resources</phase>
+                          <goals>
+                              <goal>update</goal>
+                          </goals>
+                      </execution>
+                  </executions>&ndash;&gt;
+             </plugin>
+         </plugins>
+     </build>-->
 </project>

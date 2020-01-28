@@ -4,7 +4,7 @@ spring:
   datasource:
     driverClassName: org.postgresql.Driver
     # For correct works with docker, we need to change "localhost" to a service name, take from docker-compose.yml
-    url: jdbc:postgresql://assistant-db:5432/it?curentSchema=ms_assistant
+    url: jdbc:postgresql://localhost:5432/it?curentSchema=ms_assistant
     username: ms_assistant
     password: ms_assistant
   # JPA properties
@@ -19,10 +19,10 @@ spring:
 
   liquibase:
     enabled: false
-    change-log: classpath:db\database_changelog.xml
-    url: ${spring.datasource.url}
-    user: ${spring.datasource.username}
-    password: ${spring.datasource.password}
+    #change-log: classpath:db\database_changelog.xml
+    #url: ${spring.datasource.url}
+    #user: ${spring.datasource.username}
+    #password: ${spring.datasource.password}
 
 # Server configuration
 server:

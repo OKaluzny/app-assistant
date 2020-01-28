@@ -36,7 +36,7 @@
                     <driver>org.postgresql.Driver</driver>
                     <!--For correct works with docker, we need to change "localhost"
                     to a service name, take from docker-compose.yml "assistant-db" -->
-                    <url>jdbc:postgresql://assistant-db:5432/it?currentSchema=ms_assistant</url>
+                    <url>jdbc:postgresql://localhost:5432/it?currentSchema=ms_assistant</url>
                     <username>ms_assistant</username>
                     <password>ms_assistant</password>
                     <changeLogFile>db/database_changelog.xml</changeLogFile>

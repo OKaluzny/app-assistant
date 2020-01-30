@@ -29,23 +29,20 @@ services:
   # Database Service (Postgres) #
   ###############################
   assistant-db:
-    image: postgres:12
+    build:
+      context: assistant-db
+      dockerfile: src/main/docker/Dockerfile
     container_name: assistant-db
-#    volumes:
-#      - ./assistant-db/src/main/resources/db/sql/database.sql:/docker-entrypoint-initdb.d/database.sql
-#      - postgres-data:/var/lib/postgresql/data
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
     networks:
       - assistant
     ports:
       - "5432:5432"
-    environment:
-      POSTGRES_DB: it
-      POSTGRES_USER: ms_assistant
-      POSTGRES_PASSWORD: ms_assistant
     restart: always
-  #######################
-  #
-  #####################
+  ################################
+  # Database Service (liquibase) #
+  ################################
   assistant-migrations:
     image: kilna/liquibase-postgres
     container_name: liquibase
@@ -58,7 +55,6 @@ services:
     environment:
       LIQUIBASE_DATABASE: it
       LIQUIBASE_CHANGELOG: /db/database_changelog.xml
-      LIQUIBASE_URL: jdbc:postgresql://assistant-db:5432/it
       LIQUIBASE_USERNAME: ms_assistant
       LIQUIBASE_PASSWORD: ms_assistant
       LIQUIBASE_HOST: assistant-db

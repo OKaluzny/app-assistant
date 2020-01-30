@@ -1,11 +1,9 @@
--- schema owner
-CREATE USER ms_assistant WITH password 'ms_assistant';
 
--- schema user
-CREATE USER ms_assistant_ms WITH password 'ms_assistant_ms';
+-- CREATE ROLE ms_assistant WITH password 'ms_assistant';
 
--- create schema
-CREATE SCHEMA ms_assistant AUTHORIZATION ms_assistant;
+CREATE ROLE ms_assistant_ms WITH password 'ms_assistant_ms';
+
+CREATE SCHEMA IF NOT EXISTS ms_assistant AUTHORIZATION ms_assistant;
 
 GRANT USAGE ON SCHEMA ms_assistant TO ms_assistant_ms;
 

@@ -11,6 +11,6 @@
     <property name="prefix" value="ms"/>
     <property name="table.name" value="trucks"/>
 
-    <include file="db/changelog/cumulative.xml"/>
+    <include file="/db/changelog/cumulative.xml"/>
 
 </databaseChangeLog>

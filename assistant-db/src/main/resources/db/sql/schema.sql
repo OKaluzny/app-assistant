@@ -1,8 +1,10 @@
-
--- CREATE ROLE ms_assistant WITH password 'ms_assistant';
-
-CREATE ROLE ms_assistant_ms WITH password 'ms_assistant_ms';
-
+-- schema owner
+DROP ROLE IF EXISTS ms_assistant;
+CREATE ROLE ms_assistant LOGIN PASSWORD 'ms_assistant';
+-- schema user
+DROP ROLE IF EXISTS ms_assistant_ms;
+CREATE ROLE ms_assistant_ms WITH PASSWORD 'ms_assistant_ms';
+-- create schema
 CREATE SCHEMA IF NOT EXISTS ms_assistant AUTHORIZATION ms_assistant;
 
 GRANT USAGE ON SCHEMA ms_assistant TO ms_assistant_ms;

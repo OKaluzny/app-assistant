@@ -2,8 +2,8 @@ package com.kaluzny.assistant.api.model.dto;
 
 import com.kaluzny.assistant.api.utils.DiffBuilderUtils;
 
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -28,7 +28,7 @@ public class TruckDto implements Diffable<TruckDto> {
     private Long id;
 
     @ApiModelProperty(value = "Created date.", example = "2020-01-31T10:23:09.287Z")
-    private Date createDate;
+    private Instant createDate;
 
     @ApiModelProperty(value = "Manufacturer of a Truck.", example = "Volvo")
     private String manufacturer;

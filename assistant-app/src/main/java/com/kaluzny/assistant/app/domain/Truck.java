@@ -1,7 +1,7 @@
 package com.kaluzny.assistant.app.domain;
 
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,7 +24,7 @@ public class Truck {
     private Long id;
 
     @Column(name = "create_date")
-    private Date createDate;
+    private Instant createDate;
 
     @Column(name = "manufacturer")
     private String manufacturer;
@@ -32,7 +32,7 @@ public class Truck {
     @Column(name = "model")
     private String model;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "trucks_id", referencedColumnName = "id")
     @OrderBy("id asc")
     private List<TruckDriver> truckDrivers = new ArrayList<>();

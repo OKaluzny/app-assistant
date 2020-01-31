@@ -4,7 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <!--==========================================================================================-->
-    <changeSet author="Oleg_Kaluzny" id="Create trucks table_01">
+    <changeSet author="Oleg_Kaluzny" id="Create_trucks_table_01">
         <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="${prefix}_${table.name}"/>
@@ -14,12 +14,13 @@
             <column name="id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
+            <column name="create_date" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
             <column name="manufacturer" type="VARCHAR(50)"/>
             <column name="model" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
     <!--==========================================================================================-->
-    <changeSet author="Oleg_Kaluzny" id="Create trucks table_02">
+    <changeSet author="Oleg_Kaluzny" id="Create_trucks_table_02">
         <preConditions onFail="MARK_RAN">
             <tableExists tableName="${prefix}_${table.name}"/>
             <not>
@@ -33,7 +34,7 @@
                        tableName="${prefix}_${table.name}"/>
     </changeSet>
     <!--==========================================================================================-->
-    <changeSet author="Oleg_Kaluzny" id="Create trucks table_03">
+    <changeSet author="Oleg_Kaluzny" id="Create_trucks_table_03">
         <preConditions onFail="MARK_RAN">
             <not>
                 <sequenceExists sequenceName="${prefix}_${table.name}_seq"/>
@@ -42,7 +43,7 @@
         <createSequence sequenceName="${prefix}_${table.name}_seq"/>
     </changeSet>
     <!--==========================================================================================-->
-    <changeSet author="Oleg_Kaluzny" id="Create trucks table_04">
+    <changeSet author="Oleg_Kaluzny" id="Create_trucks_table_04">
         <preConditions onFail="MARK_RAN">
             <not>
                 <sequenceExists sequenceName="${prefix}_hibernate_sequence"/>
@@ -50,6 +51,5 @@
         </preConditions>
         <createSequence sequenceName="${prefix}_hibernate_sequence"/>
     </changeSet>
-    <!--==========================================================================================-->
 
 </databaseChangeLog>

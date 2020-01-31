@@ -38,7 +38,7 @@ services:
     networks:
       - assistant
     ports:
-      - "5432:5432"
+      - "5444:5432"
     restart: always
   ################################
   # Database Service (liquibase) #

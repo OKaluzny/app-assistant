@@ -1,5 +1,8 @@
 package com.kaluzny.assistant.app.domain;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +22,18 @@ public class Truck {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "trucks_seq")
     @SequenceGenerator(name = "trucks_seq", sequenceName = "trucks_seq", allocationSize = 1)
     private Long id;
+
+    @Column(name = "create_date")
+    private Date createDate;
+
+    @Column(name = "manufacturer")
     private String manufacturer;
+
+    @Column(name = "model")
     private String model;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "trucks_id", referencedColumnName = "id")
+    @OrderBy("id asc")
+    private List<TruckDriver> truckDrivers = new ArrayList<>();
 }

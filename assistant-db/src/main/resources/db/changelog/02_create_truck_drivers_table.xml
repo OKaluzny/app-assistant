@@ -1,0 +1,60 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <!--==========================================================================================-->
+    <changeSet author="Oleg_Kaluzny" id="Create_truck_drivers_table_01">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="${prefix}_truck_drivers"/>
+            </not>
+        </preConditions>
+        <createTable tableName="${prefix}_truck_drivers">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="${table.name}_id" type="BIGINT"/>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <!--==========================================================================================-->
+    <changeSet author="Oleg_Kaluzny" id="Create_truck_drivers_table_02">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="${prefix}_truck_drivers"/>
+            <not>
+                <primaryKeyExists primaryKeyName="${prefix}_truck_drivers_pk"
+                                  tableName="${prefix}_truck_drivers"/>
+            </not>
+        </preConditions>
+
+        <addPrimaryKey columnNames="id"
+                       constraintName="${prefix}_truck_drivers_pk"
+                       tableName="${prefix}_truck_drivers"/>
+    </changeSet>
+    <!--==========================================================================================-->
+    <changeSet author="Oleg_Kaluzny" id="Create_truck_drivers_table_03">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="${prefix}_truck_drivers_trucks_fk"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="${table.name}_id"
+                                 baseTableName="${prefix}_truck_drivers"
+                                 constraintName="${prefix}_truck_drivers_trucks_fk"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id"
+                                 referencedTableName="${prefix}_${table.name}"/>
+    </changeSet>
+    <!--==========================================================================================-->
+    <changeSet author="Oleg_Kaluzny" id="Create_truck_drivers_table_04">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="${prefix}_truck_drivers_seq"/>
+            </not>
+        </preConditions>
+        <createSequence sequenceName="${prefix}_truck_drivers_seq"/>
+    </changeSet>
+
+</databaseChangeLog>

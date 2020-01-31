@@ -1,6 +1,6 @@
 -- schema owner
-DROP ROLE IF EXISTS ms_assistant;
-CREATE ROLE ms_assistant LOGIN PASSWORD 'ms_assistant';
+-- DROP ROLE IF EXISTS ms_assistant;
+-- CREATE ROLE ms_assistant LOGIN PASSWORD 'ms_assistant';
 -- schema user
 DROP ROLE IF EXISTS ms_assistant_ms;
 CREATE ROLE ms_assistant_ms WITH PASSWORD 'ms_assistant_ms';

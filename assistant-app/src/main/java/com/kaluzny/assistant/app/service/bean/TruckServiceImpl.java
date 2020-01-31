@@ -59,6 +59,7 @@ public class TruckServiceImpl implements TruckService {
         log.debug("update() - start: truck = {}", truck);
         Truck updatedEntity = repository.findById(truck.getId())
                 .map(entity -> {
+                    entity.setCreateDate(truck.getCreateDate());
                     entity.setManufacturer(truck.getManufacturer());
                     entity.setModel(truck.getModel());
                     return repository.save(entity);

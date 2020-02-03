@@ -32,8 +32,8 @@ public class Truck {
     @Column(name = "model")
     private String model;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  /*  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "trucks_id", referencedColumnName = "id")
     @OrderBy("id asc")
-    private List<TruckDriver> truckDrivers = new ArrayList<>();
+    private List<TruckDriver> truckDrivers = new ArrayList<>();*/
 }

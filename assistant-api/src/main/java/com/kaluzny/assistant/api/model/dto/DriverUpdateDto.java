@@ -19,12 +19,9 @@ import org.apache.commons.lang3.builder.Diffable;
 @Setter
 @ToString
 @Accessors(chain = true)
-public class TruckDriverDto implements Diffable<TruckDriverDto> {
+public class DriverUpdateDto implements Diffable<DriverUpdateDto> {
 
-    @ApiModelProperty(value = "Unique identifier a driver.", example = "1", hidden = true)
-    private Long id;
-
-    @ApiModelProperty(value = "First name of a driver.", example = "Max")
+    @ApiModelProperty(value = "First name of a driver.", example = "Jack")
     private String firstName;
 
     @ApiModelProperty(value = "Last name of a driver.", example = "Martens")
@@ -34,7 +31,7 @@ public class TruckDriverDto implements Diffable<TruckDriverDto> {
     private TruckDto truck;
 
     @Override
-    public DiffResult diff(TruckDriverDto obj) {
+    public DiffResult diff(DriverUpdateDto obj) {
         return DiffBuilderUtils.createBuilder(this, obj);
     }
 }

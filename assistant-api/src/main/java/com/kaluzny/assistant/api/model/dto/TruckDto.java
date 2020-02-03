@@ -36,8 +36,8 @@ public class TruckDto implements Diffable<TruckDto> {
     @ApiModelProperty(value = "Model of a Truck.", example = "FH-16")
     private String model;
 
-    @ApiModelProperty(value = "List of a truck drivers.", required = true)
-    private List<TruckDriverDto> truckDrivers = new ArrayList<>();
+   // @ApiModelProperty(value = "List of a truck drivers.", required = true)
+   // private List<TruckDriverDto> truckDrivers = new ArrayList<>();
 
     @Override
     public DiffResult diff(TruckDto obj) {

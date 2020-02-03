@@ -3,20 +3,21 @@ package com.kaluzny.assistant.api.resource;
 import com.kaluzny.assistant.api.model.dto.TruckDto;
 import com.kaluzny.assistant.api.model.dto.TruckUpdateDto;
 import com.kaluzny.assistant.api.model.filter.TruckFilter;
-import io.swagger.annotations.*;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.validation.constraints.NotNull;
 import java.util.Collection;
+import io.swagger.annotations.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * CRUD REST API service for microservice-assistant.
  *
  * @author Oleg Kaluzny
  */
-@Api(value = "TruckResource", tags = "microservice-assistant")
+@Api(value = "TruckResource", tags = "microservice-assistant-truck")
 @SwaggerDefinition(tags = @Tag(name = "microservice-assistant", description = "Resource interface for microservice-assistant"))
 public interface TruckResource {
 
@@ -26,13 +27,13 @@ public interface TruckResource {
      * @param requestForSave info about a truck {@link TruckDto}
      * @return newly created info about a truck
      */
-    @ApiOperation(value = "Endpoint to create Truck", response = TruckDto.class)
+    @ApiOperation(value = "The endpoint to create truck", response = TruckDto.class)
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Truck is created"),
             @ApiResponse(code = 201, message = "Truck is created"),
             @ApiResponse(code = 201, message = " ")})
     TruckDto createTruck(
-            @ApiParam("Truck") @NotNull @RequestBody TruckUpdateDto requestForSave);
+            @ApiParam("Truck dto") @NotNull @RequestBody TruckUpdateDto requestForSave);
 
     /**
      * REST endpoint to get Truck reference by id.
@@ -43,7 +44,7 @@ public interface TruckResource {
     @ApiOperation(value = "Endpoint to get Truck by id", response = TruckDto.class)
     @ApiResponse(code = 200, message = "Success")
     TruckDto getTruckById(
-            @ApiParam("Unique identifier a Truck") @PathVariable @NotNull Long id);
+            @ApiParam("Unique identifier a Truck") @NotNull Long id);
 
     /**
      * Pageable and filtered REST endpoint for trucks.

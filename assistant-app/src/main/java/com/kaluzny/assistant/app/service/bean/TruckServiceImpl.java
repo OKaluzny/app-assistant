@@ -49,7 +49,7 @@ public class TruckServiceImpl implements TruckService {
     public Truck findById(Long id) {
         log.debug("findById() - start: id = {}", id);
         Truck entity = repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Entity with id = Not found"));
+                .orElseThrow(() -> new EntityNotFoundException("truck not found with id " + id));
         log.info("findById() - end: entity = {}", entity.getId());
         return entity;
     }
@@ -64,7 +64,7 @@ public class TruckServiceImpl implements TruckService {
                     entity.setModel(truck.getModel());
                     return repository.save(entity);
                 })
-                .orElseThrow(() -> new EntityNotFoundException("truck with id = Not found"));
+                .orElseThrow(() -> new EntityNotFoundException("truck not found with id " + truck.getId()));
         log.info("update() - end: entity = {}", updatedEntity.getId());
         return updatedEntity;
     }

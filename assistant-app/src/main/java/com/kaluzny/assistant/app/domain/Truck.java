@@ -1,12 +1,14 @@
 package com.kaluzny.assistant.app.domain;
 
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+
+import javax.persistence.*;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Oleg Kaluzny
@@ -24,6 +26,7 @@ public class Truck {
     private Long id;
 
     @Column(name = "create_date")
+    @CreatedDate
     private Instant createDate;
 
     @Column(name = "manufacturer")
@@ -32,8 +35,8 @@ public class Truck {
     @Column(name = "model")
     private String model;
 
-  /*  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "trucks_id", referencedColumnName = "id")
     @OrderBy("id asc")
-    private List<TruckDriver> truckDrivers = new ArrayList<>();*/
+    private List<TruckDriver> truckDrivers = new ArrayList<>();
 }

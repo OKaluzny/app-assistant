@@ -1,10 +1,6 @@
 package com.kaluzny.assistant.api.model.dto;
 
 import com.kaluzny.assistant.api.utils.DiffBuilderUtils;
-
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +8,10 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.apache.commons.lang3.builder.DiffResult;
 import org.apache.commons.lang3.builder.Diffable;
+
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Oleg Kaluzny
@@ -31,8 +31,8 @@ public class TruckUpdateDto implements Diffable<TruckUpdateDto> {
     @ApiModelProperty(value = "Model of a Truck.", example = "FH-16")
     private String model;
 
-   // @ApiModelProperty(value = "List of a truck drivers.", required = true)
-   // private List<TruckDriverDto> truckDrivers = new ArrayList<>();
+    @ApiModelProperty(value = "List of a truck drivers.", required = true)
+    private List<TruckDriverDto> truckDrivers = new ArrayList<>();
 
     @ApiModelProperty(value = "Owner", required = true)
     private TruckOwnerDto truckOwner;

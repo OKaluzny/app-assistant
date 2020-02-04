@@ -1,12 +1,12 @@
 package com.kaluzny.assistant.app.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
 
 /**
  * @author Oleg Kaluzny
@@ -32,6 +32,5 @@ public class TruckDriver {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "trucks_id", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private Truck truck;
 }

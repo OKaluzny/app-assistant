@@ -4,7 +4,7 @@ import com.kaluzny.assistant.api.model.dto.TruckDriverDto;
 import com.kaluzny.assistant.api.model.dto.TruckDto;
 import com.kaluzny.assistant.app.domain.Truck;
 import com.kaluzny.assistant.app.config.mapping.TruckMapper;
-import com.kaluzny.assistant.app.domain.TruckDriver;
+import com.kaluzny.assistant.app.domain.Driver;
 
 import org.springframework.context.annotation.Configuration;
 
@@ -27,7 +27,7 @@ public class MappingConfig implements OrikaMapperFactoryConfigurer {
                 .byDefault()
                 .register();
 
-        mapperFactory.classMap(TruckDriver.class, TruckDriverDto.class)
+        mapperFactory.classMap(Driver.class, TruckDriverDto.class)
                 .byDefault()
                 .register();
     }

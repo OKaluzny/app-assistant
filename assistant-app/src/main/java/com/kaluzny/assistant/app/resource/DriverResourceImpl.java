@@ -3,11 +3,9 @@ package com.kaluzny.assistant.app.resource;
 import com.kaluzny.assistant.api.model.dto.DriverUpdateDto;
 import com.kaluzny.assistant.api.model.dto.TruckDriverDto;
 import com.kaluzny.assistant.api.resource.DriverResource;
-import com.kaluzny.assistant.app.domain.TruckDriver;
-import com.kaluzny.assistant.app.repository.DriverRepository;
+import com.kaluzny.assistant.app.domain.Driver;
 import com.kaluzny.assistant.app.service.DriverService;
 import com.kaluzny.assistant.app.utils.converter.DriverConverter;
-import com.kaluzny.assistant.app.utils.converter.TruckConverter;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,10 +31,10 @@ public class DriverResourceImpl implements DriverResource {
     @PostMapping("/trucks/{id}/drivers")
     @ResponseStatus(HttpStatus.CREATED)
     @Override
-    public TruckDriverDto addDriverForTruck(@PathVariable Long id, TruckDriverDto requestForSave) {
+    public TruckDriverDto addDriverForTruck(@PathVariable Long id, DriverUpdateDto requestForSave) {
         log.debug("addDriverForTruck() start: requestForSave={}", requestForSave);
-        TruckDriver entity = converter.getMapperFacade()
-                .map(requestForSave, TruckDriver.class);
+        Driver entity = converter.getMapperFacade()
+                .map(requestForSave, Driver.class);
         TruckDriverDto dto = converter.toDto(service.addDriver(id, entity));
         log.info("addDriverForTruck() - end: response dto = {}", dto);
         return dto;
@@ -58,35 +56,35 @@ public class DriverResourceImpl implements DriverResource {
         return pageContent;
     }*/
 
- /*   @GetMapping("/trucks/{id}")
+    @GetMapping("/drivers/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Override
-    public TruckDto getTruckById(@PathVariable("id") Long id) {
-        log.debug("getTruckById() - start: id = {}", id);
-        Truck entity = service.findById(id);
-        TruckDto dto = converter.toDto(entity);
-        log.debug("getTruckById() - end: dto = {}", dto.getId());
+    public TruckDriverDto getDriverById(@PathVariable Long id) {
+        log.debug("getDriverById() - start: id = {}", id);
+        Driver entity = service.findById(id);
+        TruckDriverDto dto = converter.toDto(entity);
+        log.debug("getDriverById() - end: dto = {}", dto.getId());
         return dto;
-    }*/
+    }
 
-   /* @PutMapping("/trucks/{id}")
+    @PutMapping("/drivers/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Override
-    public TruckDto updateTruck(@PathVariable Long id, @RequestBody TruckUpdateDto requestForUpdate) {
-        log.debug("updateTruck() - start: id = {}, requestForUpdate = {}", id, requestForUpdate);
-        Truck entity = service.findById(id);
+    public TruckDriverDto updateDriver(@PathVariable Long id, @RequestBody DriverUpdateDto requestForUpdate) {
+        log.debug("updateDriver() - start: id = {}, requestForUpdate = {}", id, requestForUpdate);
+        Driver entity = service.findById(id);
         converter.getMapperFacade().map(requestForUpdate, entity);
-        TruckDto dto = converter.toDto(service.update(entity));
+        TruckDriverDto dto = converter.toDto(service.update(entity));
         log.debug("updateTruck() - end: dto = {}", dto.getId());
         return dto;
-    }*/
+    }
 
-   /* @DeleteMapping("/trucks/{id}")
+    @DeleteMapping("/drivers/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Override
-    public void deleteTruckById(@PathVariable("id") Long id) {
-        log.debug("deleteTruckById() - start: id = {}", id);
+    public void removeDriverById(@PathVariable("id") Long id) {
+        log.debug("removeDriverById() - start: id = {}", id);
         service.deleteById(id);
-        log.debug("deleteTruckById() - end");
-    }*/
+        log.debug("removeDriverById() - end");
+    }
 }

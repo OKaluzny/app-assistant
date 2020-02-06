@@ -1,17 +1,15 @@
 package com.kaluzny.assistant.app.service.bean;
 
-import com.kaluzny.assistant.app.domain.TruckDriver;
+import com.kaluzny.assistant.app.domain.Driver;
 import com.kaluzny.assistant.app.repository.DriverRepository;
 import com.kaluzny.assistant.app.repository.TruckRepository;
 import com.kaluzny.assistant.app.service.DriverService;
-
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import javax.persistence.EntityNotFoundException;
 
 /**
  * DriverServiceImpl
@@ -44,48 +42,46 @@ public class DriverServiceImpl implements DriverService {
         return page;
     }*/
 
- /*   @Override
-    public TruckDriver findById(Long id) {
+    @Override
+    public Driver findById(Long id) {
         log.debug("findById() - start: id = {}", id);
-        TruckDriver entity = driverRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Entity with id = Not found"));
-        log.info("findById() - end: entity = {}", entity.getId());
-        return entity;
-    }*/
+        Driver driver = driverRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("driver not found with id = " + id));
+        log.info("findById() - end: driver = {}", driver.getId());
+        return driver;
+    }
 
-   /* @Override
-    public TruckDriver update(TruckDriver driver) {
+    @Override
+    public Driver update(Driver driver) {
         log.debug("update() - start: driver = {}", driver);
-        TruckDriver updatedEntity = driverRepository.findById(driver.getId())
+
+        Driver updatedEntity = driverRepository.findById(driver.getId())
                 .map(entity -> {
                     entity.setFirstName(driver.getFirstName());
                     entity.setLastName(driver.getLastName());
                     return driverRepository.save(entity);
                 })
-                .orElseThrow(() -> new EntityNotFoundException("truck with id = Not found"));
+                .orElseThrow(() -> new EntityNotFoundException("driver not found with id = " + driver.getId()));
         log.info("update() - end: entity = {}", updatedEntity.getId());
         return updatedEntity;
-    }*/
-    //=================
+    }
 
-    public TruckDriver addDriver(@PathVariable Long truckId, TruckDriver driver) {
+    public Driver addDriver(@PathVariable Long truckId, Driver driver) {
         log.debug("addDriver() - start: truckId = {}, driver = {}", truckId, driver);
-        TruckDriver truckDriver = truckRepository.findById(truckId)
+        Driver truckDriver = truckRepository.findById(truckId)
                 .map(truck -> {
                     driver.setTruck(truck);
                     return driverRepository.save(driver);
                 })
-                .orElseThrow(() -> new EntityNotFoundException("truck not found with id " + truckId));
+                .orElseThrow(() -> new EntityNotFoundException("driver not found with id = " + truckId));
         log.info("addDriver() - end: truckDriver with id = {}", truckDriver.getId());
         return truckDriver;
     }
 
-    //==========
-
-   /* @Override
+    @Override
     public void deleteById(Long id) {
         log.debug("deleteById() - start: id = {}", id);
         driverRepository.deleteById(id);
         log.debug("deleteById() - end");
-    }*/
+    }
 }

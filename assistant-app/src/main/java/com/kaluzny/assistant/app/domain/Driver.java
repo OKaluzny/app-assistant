@@ -16,7 +16,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "truck_drivers", schema = "ms_assistant")
-public class TruckDriver {
+public class Driver {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "truck_drivers_seq")

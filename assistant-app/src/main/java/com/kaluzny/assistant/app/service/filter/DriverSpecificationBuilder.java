@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
 
-import static com.kaluzny.assistant.app.utils.converter.DriverSpecifications.isFirstName;
-import static com.kaluzny.assistant.app.utils.converter.DriverSpecifications.isLastName;
+import static com.kaluzny.assistant.app.utils.DriverSpecifications.isFirstName;
+import static com.kaluzny.assistant.app.utils.DriverSpecifications.isLastName;
 
 /**
  * SpecificationBuilder

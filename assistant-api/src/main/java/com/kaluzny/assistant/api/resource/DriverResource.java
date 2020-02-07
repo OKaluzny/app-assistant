@@ -2,10 +2,14 @@ package com.kaluzny.assistant.api.resource;
 
 import com.kaluzny.assistant.api.model.dto.DriverUpdateDto;
 import com.kaluzny.assistant.api.model.dto.TruckDriverDto;
-import io.swagger.annotations.*;
+import com.kaluzny.assistant.api.model.filter.DriverFilter;
+
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.Collection;
+import io.swagger.annotations.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -42,6 +46,23 @@ public interface DriverResource {
             @ApiParam("Unique identifier a Driver") @NotNull Long id);
 
     /**
+     * Pageable and filtered REST endpoint for drivers.
+     *
+     * @param pageable page details.
+     * @param filter   filterable attributes.
+     * @return searched drivers.
+     */
+    @ApiOperation(value = "Filterable and pageable endpoint for drivers", response = TruckDriverDto.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "page", paramType = "query", value = "Results page you want to retrieve (1..N)."),
+            @ApiImplicitParam(name = "count", paramType = "query", value = "Number of records per page."),
+            @ApiImplicitParam(name = "sort", allowMultiple = true, dataType = "string", paramType = "query",
+                    value = "Sorting criteria in the format: property (,asc|desc). Default sort order is ascending. "
+                            + "Multiple sort criteria are supported.")
+    })
+    Collection<TruckDriverDto> getPage(PageRequest pageable, DriverFilter filter);
+
+    /**
      * REST endpoint to update driver by id.
      *
      * @param id               Driver's id.
@@ -50,13 +71,12 @@ public interface DriverResource {
      */
     @ApiOperation(value = "Endpoint to update driver", response = TruckDriverDto.class)
     TruckDriverDto updateDriver(
+            @ApiParam("truck id") @NotNull Long truckId,
             @ApiParam("driver id") @NotNull Long id,
             @ApiParam("driver") @NotNull DriverUpdateDto requestForUpdate);
 
     /**
      * REST endpoint to remove driver.
-     *
-     * @return deleted driver.
      */
     @ApiOperation(value = "Endpoint to delete driver by id", response = TruckDriverDto.class)
     void removeDriverById(

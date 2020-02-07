@@ -1,6 +1,10 @@
 package com.kaluzny.assistant.app.service;
 
+import com.kaluzny.assistant.api.model.filter.DriverFilter;
 import com.kaluzny.assistant.app.domain.Driver;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * @author Oleg Kaluzny
@@ -13,16 +17,16 @@ public interface DriverService {
      * @param driver {@link Driver}.
      * @return DTO representation for created truck.
      */
-    Driver addDriver(Long truckId, final Driver driver);
+    Driver addDriver(final Long truckId, final Driver driver);
 
     /**
      * Get page of drivers.
      *
      * @param pageable page request details
      * @param filter   filters to apply
-     * @return DTO representation of searched trucks.
+     * @return DTO representation of searched drivers.
      */
-    /* Page<Truck> getPage(final Pageable pageable, final TruckFilter filter);*/
+    Page<Driver> getPage(final Pageable pageable, final DriverFilter filter);
 
     /**
      * Get driver by ID.
@@ -35,10 +39,11 @@ public interface DriverService {
     /**
      * Update existing driver.
      *
-     * @param driver {@link Driver }.
+     * @param truckId truck's id.
+     * @param driver  {@link Driver}.
      * @return representation for updated driver.
      */
-    Driver update(final Driver driver);
+    Driver update(final Long truckId, final Driver driver);
 
     /**
      * Delete existing driver by id.

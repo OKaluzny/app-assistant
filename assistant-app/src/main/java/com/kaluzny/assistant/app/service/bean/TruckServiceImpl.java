@@ -4,7 +4,7 @@ import com.kaluzny.assistant.api.model.filter.TruckFilter;
 import com.kaluzny.assistant.app.domain.Truck;
 import com.kaluzny.assistant.app.repository.TruckRepository;
 import com.kaluzny.assistant.app.service.TruckService;
-import com.kaluzny.assistant.app.service.filter.SpecificationBuilder;
+import com.kaluzny.assistant.app.service.filter.TruckSpecificationBuilder;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public class TruckServiceImpl implements TruckService {
 
     private final TruckRepository repository;
-    private final SpecificationBuilder specificationBuilder;
+    private final TruckSpecificationBuilder truckSpecificationBuilder;
 
     @Override
     public Truck create(Truck requestForSave) {
@@ -39,7 +39,7 @@ public class TruckServiceImpl implements TruckService {
     @Override
     public Page<Truck> getPage(Pageable pageable, TruckFilter filter) {
         log.debug("getPage() - start: pageable = {}, filter = {}", pageable, filter);
-        Specification<Truck> specification = specificationBuilder.buildFilterSpec(filter);
+        Specification<Truck> specification = truckSpecificationBuilder.buildFilterSpec(filter);
         Page<Truck> page = repository.findAll(specification, pageable);
         log.debug("getPage() - end: page = {}", page);
         return page;

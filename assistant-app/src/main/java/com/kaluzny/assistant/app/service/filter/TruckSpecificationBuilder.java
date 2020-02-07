@@ -18,7 +18,7 @@ import static com.kaluzny.assistant.app.utils.TruckSpecifications.isModel;
  */
 @Component
 @RequiredArgsConstructor
-public class SpecificationBuilder {
+public class TruckSpecificationBuilder {
 
     /**
      * Method return specification for {@link Truck}.

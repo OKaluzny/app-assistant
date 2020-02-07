@@ -2,20 +2,26 @@ package com.kaluzny.assistant.app.resource;
 
 import com.kaluzny.assistant.api.model.dto.DriverUpdateDto;
 import com.kaluzny.assistant.api.model.dto.TruckDriverDto;
+import com.kaluzny.assistant.api.model.filter.DriverFilter;
 import com.kaluzny.assistant.api.resource.DriverResource;
 import com.kaluzny.assistant.app.domain.Driver;
 import com.kaluzny.assistant.app.service.DriverService;
 import com.kaluzny.assistant.app.utils.converter.DriverConverter;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Implementing a REST service for working with info about a truck.
+ * Implementing a REST service for working with info about a driver.
  *
  * @author Oleg Kaluzny
  */
@@ -40,21 +46,21 @@ public class DriverResourceImpl implements DriverResource {
         return dto;
     }
 
-  /*  @GetMapping("/trucks")
+    @GetMapping("/drivers")
     @ResponseStatus(HttpStatus.OK)
     @Override
-    public Collection<TruckDto> getPage(PageRequest pageable, TruckFilter filter) {
+    public Collection<TruckDriverDto> getPage(PageRequest pageable, DriverFilter filter) {
         log.debug("getPage() - start: pageable = {}, filter = {}", pageable, filter);
-        Page<Truck> page = service.getPage(pageable, filter);
-        List<TruckDto> pageContent = new ArrayList<>();
-        for (Truck entity : page
+        Page<Driver> page = service.getPage(pageable, filter);
+        List<TruckDriverDto> pageContent = new ArrayList<>();
+        for (Driver entity : page
                 .getContent()) {
-            TruckDto dto = converter.toDto(entity);
+            TruckDriverDto dto = converter.toDto(entity);
             pageContent.add(dto);
         }
         log.debug("getPage() - end: pageContent = {}", pageContent);
         return pageContent;
-    }*/
+    }
 
     @GetMapping("/drivers/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -67,14 +73,15 @@ public class DriverResourceImpl implements DriverResource {
         return dto;
     }
 
-    @PutMapping("/drivers/{id}")
+    @PutMapping("/trucks/{truckId}/drivers/{driverId}")
     @ResponseStatus(HttpStatus.OK)
     @Override
-    public TruckDriverDto updateDriver(@PathVariable Long id, @RequestBody DriverUpdateDto requestForUpdate) {
-        log.debug("updateDriver() - start: id = {}, requestForUpdate = {}", id, requestForUpdate);
-        Driver entity = service.findById(id);
+    public TruckDriverDto updateDriver(
+            @PathVariable Long truckId, @PathVariable Long driverId, @RequestBody DriverUpdateDto requestForUpdate) {
+        log.debug("updateDriver() - start: truckId = {}, driverId = {}, requestForUpdate = {}", truckId, driverId, requestForUpdate);
+        Driver entity = service.findById(driverId);
         converter.getMapperFacade().map(requestForUpdate, entity);
-        TruckDriverDto dto = converter.toDto(service.update(entity));
+        TruckDriverDto dto = converter.toDto(service.update(truckId, entity));
         log.debug("updateTruck() - end: dto = {}", dto.getId());
         return dto;
     }
@@ -82,7 +89,7 @@ public class DriverResourceImpl implements DriverResource {
     @DeleteMapping("/drivers/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Override
-    public void removeDriverById(@PathVariable("id") Long id) {
+    public void removeDriverById(@PathVariable Long id) {
         log.debug("removeDriverById() - start: id = {}", id);
         service.deleteById(id);
         log.debug("removeDriverById() - end");

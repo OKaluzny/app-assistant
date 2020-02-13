@@ -15,12 +15,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "truck_drivers", schema = "ms_assistant")
+@Table(name = "drivers", schema = "ms_assistant")
 public class Driver {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "truck_drivers_seq")
-    @SequenceGenerator(name = "truck_drivers_seq", sequenceName = "truck_drivers_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "drivers_seq")
+    @SequenceGenerator(name = "drivers_seq", sequenceName = "drivers_seq", allocationSize = 1)
     private Long id;
 
     @Column(name = "first_name")
@@ -30,7 +30,7 @@ public class Driver {
     private String lastName;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "trucks_id", referencedColumnName = "id")
+    @JoinColumn(name = "truck_id", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Truck truck;
 }

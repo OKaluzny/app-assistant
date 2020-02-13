@@ -20,7 +20,7 @@ import java.util.List;
 @Setter
 @ToString
 @Accessors(chain = true)
-public class TruckOwnerDto implements Diffable<TruckOwnerDto> {
+public class OwnerDto implements Diffable<OwnerDto> {
 
     @ApiModelProperty(value = "Unique identifier a owner.", example = "1", hidden = true)
     private Long id;
@@ -35,7 +35,7 @@ public class TruckOwnerDto implements Diffable<TruckOwnerDto> {
     private List<TruckDto> trucks = new ArrayList<>();
 
     @Override
-    public DiffResult diff(TruckOwnerDto obj) {
+    public DiffResult diff(OwnerDto obj) {
         return DiffBuilderUtils.createBuilder(this, obj);
     }
 }

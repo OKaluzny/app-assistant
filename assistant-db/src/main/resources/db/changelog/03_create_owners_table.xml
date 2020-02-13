@@ -1,0 +1,58 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <!--==========================================================================================-->
+    <changeSet author="Oleg_Kaluzny" id="Create_owners_table_01">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="${prefix}_owners"/>
+            </not>
+        </preConditions>
+        <createTable tableName="${prefix}_owners">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(55)"/>
+            <column name="last_name" type="VARCHAR(55)"/>
+        </createTable>
+    </changeSet>
+    <!--==========================================================================================-->
+    <changeSet author="Oleg_Kaluzny" id="Create_owners_table_02">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="${prefix}_owners"/>
+            <not>
+                <primaryKeyExists primaryKeyName="${prefix}_owner_pk"
+                                  tableName="${prefix}_owners"/>
+            </not>
+        </preConditions>
+
+        <addPrimaryKey columnNames="id"
+                       constraintName="${prefix}_owner_pk"
+                       tableName="${prefix}_owners"/>
+    </changeSet>
+    <!--==========================================================================================-->
+    <changeSet author="Oleg_Kaluzny" id="Create_owners_table_04">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="${prefix}_owners_seq"/>
+            </not>
+        </preConditions>
+        <createSequence sequenceName="${prefix}_owners_seq"/>
+    </changeSet>
+    <!--==========================================================================================-->
+    <changeSet author="Oleg_Kaluzny" id="Create_trucks_table_05">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="${prefix}_trucks_owner_fk"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="owner_id"
+                                 baseTableName="${prefix}_trucks"
+                                 constraintName="${prefix}_trucks_owner_fk"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id"
+                                 referencedTableName="${prefix}_owners"/>
+    </changeSet>
+</databaseChangeLog>

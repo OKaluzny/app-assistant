@@ -3,6 +3,8 @@ package com.kaluzny.assistant.app.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -36,7 +38,12 @@ public class Truck {
     private String model;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "trucks_id", referencedColumnName = "id")
+    @JoinColumn(name = "truck_id", referencedColumnName = "id")
     @OrderBy("id asc")
     private List<Driver> drivers = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "owner_id", referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Owner owner;
 }

@@ -33,7 +33,7 @@ public class Owner {
     private String lastName;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "owners_id", referencedColumnName = "id")
+    @JoinColumn(name = "owner_id", referencedColumnName = "id")
     @OrderBy("id asc")
     private List<Truck> trucks = new ArrayList<>();
 }

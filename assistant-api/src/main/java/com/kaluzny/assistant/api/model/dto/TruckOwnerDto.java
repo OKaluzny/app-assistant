@@ -10,6 +10,9 @@ import lombok.experimental.Accessors;
 import org.apache.commons.lang3.builder.DiffResult;
 import org.apache.commons.lang3.builder.Diffable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Oleg Kaluzny
  */
@@ -27,6 +30,9 @@ public class TruckOwnerDto implements Diffable<TruckOwnerDto> {
 
     @ApiModelProperty(value = "Last name of an owner.", example = "Mueller")
     private String lastName;
+
+    @ApiModelProperty(value = "List of a trucks.", required = true)
+    private List<TruckDto> trucks = new ArrayList<>();
 
     @Override
     public DiffResult diff(TruckOwnerDto obj) {

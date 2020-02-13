@@ -7,6 +7,7 @@ import com.kaluzny.assistant.app.repository.TruckRepository;
 import com.kaluzny.assistant.app.service.DriverService;
 import com.kaluzny.assistant.app.service.filter.DriverSpecificationBuilder;
 
+import javassist.NotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;

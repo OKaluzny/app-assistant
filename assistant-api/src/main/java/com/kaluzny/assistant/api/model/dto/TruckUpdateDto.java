@@ -10,6 +10,7 @@ import org.apache.commons.lang3.builder.DiffResult;
 import org.apache.commons.lang3.builder.Diffable;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +23,8 @@ import java.util.List;
 @Accessors(chain = true)
 public class TruckUpdateDto implements Diffable<TruckUpdateDto> {
 
-    @ApiModelProperty(value = "Created date.", example = "2020-01-31T10:23:09.287Z")
-    private Instant createDate;
+    @ApiModelProperty(value = "Created date.", example = "2020-01-31T10:47:08.3967422")
+    private LocalDateTime createDate;
 
     @ApiModelProperty(value = "Manufacturer of a Truck.", example = "Volvo")
     private String manufacturer;

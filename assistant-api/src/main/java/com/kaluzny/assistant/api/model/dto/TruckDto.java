@@ -27,7 +27,7 @@ public class TruckDto implements Diffable<TruckDto> {
     @ApiModelProperty(value = "Unique identifier a Truck.", example = "1")
     private Long id;
 
-    @ApiModelProperty(value = "Created date.", example = "2020-01-31T10:23:09.287Z")
+    @ApiModelProperty(value = "Created date.", example = "2020-01-13T10:47:08.3967422")
     private LocalDateTime createDate;
 
     @ApiModelProperty(value = "Manufacturer of a Truck.", example = "Volvo")

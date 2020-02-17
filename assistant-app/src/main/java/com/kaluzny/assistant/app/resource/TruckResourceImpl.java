@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -41,6 +42,8 @@ public class TruckResourceImpl implements TruckResource {
         log.debug("createTruck() start: requestForSave={}", requestForSave);
         Truck entity = converter.getMapperFacade()
                 .map(requestForSave, Truck.class);
+        //TODO should be removed when will be fe
+        entity.setCreateDate(LocalDateTime.now());
         TruckDto dto = converter.toDto(service.create(entity));
         log.debug("createTruck() - end: response dto = {}", dto);
         return dto;

@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,7 @@ public class TruckServiceImpl implements TruckService {
     public Truck create(Truck requestForSave) {
         log.debug("create() - start: requestForSave = {}", requestForSave);
         Truck entity = repository.save(requestForSave);
+        entity.setCreateDate(LocalDateTime.now());
         log.info("create() - end: entity = {}", entity);
         return entity;
     }

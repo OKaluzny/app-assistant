@@ -1,16 +1,16 @@
 package com.kaluzny.assistant.app.domain;
 
+import org.springframework.data.annotation.CreatedDate;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.data.annotation.CreatedDate;
-
-import javax.persistence.*;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Oleg Kaluzny
@@ -29,7 +29,7 @@ public class Truck {
 
     @Column(name = "create_date")
     @CreatedDate
-    private Instant createDate;
+    private LocalDateTime createDate;
 
     @Column(name = "manufacturer")
     private String manufacturer;

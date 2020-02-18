@@ -2,6 +2,9 @@ package com.kaluzny.assistant.api.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kaluzny.assistant.api.utils.DiffBuilderUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,6 +36,9 @@ public class TruckDriverDto implements Diffable<TruckDriverDto> {
     @ApiModelProperty(value = "Model of truck.", example = "truck Martens")
     @JsonIgnore
     private TruckDto truck;
+
+    @ApiModelProperty(value = "List of a addresses.", required = true)
+    private List<AddressDto> addresses = new ArrayList<>();
 
     @Override
     public DiffResult diff(TruckDriverDto obj) {

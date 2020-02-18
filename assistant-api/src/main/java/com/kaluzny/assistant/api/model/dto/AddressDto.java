@@ -21,8 +21,8 @@ import org.apache.commons.lang3.builder.Diffable;
 @Accessors(chain = true)
 public class AddressDto implements Diffable<AddressDto> {
 
-    @ApiModelProperty(value = "Unique identifier a Address.", example = "1")
-    private Long id;
+    /*@ApiModelProperty(value = "Unique identifier a Address.", example = "1")
+    private Long id;*/
 
     @ApiModelProperty(value = "country of an employee.", example = "Ukraine")
     private String country;

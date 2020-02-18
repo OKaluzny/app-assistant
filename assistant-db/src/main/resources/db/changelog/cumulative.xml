@@ -7,5 +7,6 @@
     <include file="/db/changelog/01_create_trucks_table.xml"/>
     <include file="/db/changelog/02_create_drivers_table.xml"/>
     <include file="/db/changelog/03_create_owners_table.xml"/>
+    <include file="/db/changelog/04_create_addresses_table.xml"/>
 
 </databaseChangeLog>

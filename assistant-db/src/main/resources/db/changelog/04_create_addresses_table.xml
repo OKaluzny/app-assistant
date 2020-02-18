@@ -1,0 +1,60 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <!--==========================================================================================-->
+    <changeSet author="Oleg_Kaluzny" id="Create_addresses_table_01">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="${prefix}_addresses"/>
+            </not>
+        </preConditions>
+        <createTable tableName="${prefix}_addresses">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country" type="VARCHAR(55)"/>
+            <column name="city" type="VARCHAR(55)"/>
+            <column name="street" type="VARCHAR(55)"/>
+        </createTable>
+    </changeSet>
+    <!--==========================================================================================-->
+    <changeSet author="Oleg_Kaluzny" id="Create_addresses_table_02">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="${prefix}_addresses"/>
+            <not>
+                <primaryKeyExists primaryKeyName="${prefix}_address_pk"
+                                  tableName="${prefix}_addresses"/>
+            </not>
+        </preConditions>
+
+        <addPrimaryKey columnNames="id"
+                       constraintName="${prefix}_address_pk"
+                       tableName="${prefix}_addresses"/>
+    </changeSet>
+    <!--==========================================================================================-->
+    <changeSet author="Oleg_Kaluzny" id="Create_addresses_table_04">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="${prefix}_addresses_seq"/>
+            </not>
+        </preConditions>
+        <createSequence sequenceName="${prefix}_addresses_seq"/>
+    </changeSet>
+    <!--==========================================================================================-->
+    <changeSet author="Oleg_Kaluzny" id="Create_drivers_table_05">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="${prefix}_drivers_address_fk"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="address_id"
+                                 baseTableName="${prefix}_drivers"
+                                 constraintName="${prefix}_drivers_address_fk"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id"
+                                 referencedTableName="${prefix}_addresses"/>
+    </changeSet>
+
+</databaseChangeLog>

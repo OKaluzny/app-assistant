@@ -15,6 +15,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="truck_id" type="BIGINT"/>
+            <column name="address_id" type="BIGINT"/>
             <column name="first_name" type="VARCHAR(255)"/>
             <column name="last_name" type="VARCHAR(255)"/>
         </createTable>

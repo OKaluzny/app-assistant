@@ -1,12 +1,13 @@
 package com.kaluzny.assistant.app.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
-import javax.persistence.*;
 
 /**
  * @author Oleg Kaluzny
@@ -33,4 +34,9 @@ public class Driver {
     @JoinColumn(name = "truck_id", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Truck truck;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    @OrderBy("id asc")
+    private List<Address> addresses = new ArrayList<>();
 }

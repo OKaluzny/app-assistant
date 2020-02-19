@@ -16,6 +16,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="driver_id" type="BIGINT"/>
+            <column name="address_has_active" type="BOOLEAN"/>
             <column name="country" type="VARCHAR(55)"/>
             <column name="city" type="VARCHAR(55)"/>
             <column name="street" type="VARCHAR(55)"/>

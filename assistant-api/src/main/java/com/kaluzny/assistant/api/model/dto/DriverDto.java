@@ -18,7 +18,7 @@ import org.apache.commons.lang3.builder.Diffable;
  */
 @Data
 @Accessors(chain = true)
-public class TruckDriverDto implements Diffable<TruckDriverDto> {
+public class DriverDto implements Diffable<DriverDto> {
 
     @ApiModelProperty(value = "Unique identifier a driver.", example = "1", hidden = true)
     private Long id;
@@ -37,7 +37,7 @@ public class TruckDriverDto implements Diffable<TruckDriverDto> {
     private List<AddressDto> addresses = new ArrayList<>();
 
     @Override
-    public DiffResult diff(TruckDriverDto obj) {
+    public DiffResult diff(DriverDto obj) {
         return DiffBuilderUtils.createBuilder(this, obj);
     }
 }

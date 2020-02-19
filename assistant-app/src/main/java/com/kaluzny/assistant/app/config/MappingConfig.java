@@ -1,6 +1,6 @@
 package com.kaluzny.assistant.app.config;
 
-import com.kaluzny.assistant.api.model.dto.TruckDriverDto;
+import com.kaluzny.assistant.api.model.dto.DriverDto;
 import com.kaluzny.assistant.api.model.dto.TruckDto;
 import com.kaluzny.assistant.app.domain.Truck;
 import com.kaluzny.assistant.app.config.mapping.TruckMapper;
@@ -27,7 +27,7 @@ public class MappingConfig implements OrikaMapperFactoryConfigurer {
                 .byDefault()
                 .register();
 
-        mapperFactory.classMap(Driver.class, TruckDriverDto.class)
+        mapperFactory.classMap(Driver.class, DriverDto.class)
                 .byDefault()
                 .register();
     }

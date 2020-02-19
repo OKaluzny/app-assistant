@@ -1,6 +1,6 @@
 package com.kaluzny.assistant.app.utils.converter;
 
-import com.kaluzny.assistant.api.model.dto.TruckDriverDto;
+import com.kaluzny.assistant.api.model.dto.DriverDto;
 import com.kaluzny.assistant.app.domain.Driver;
 
 import org.springframework.stereotype.Component;
@@ -21,7 +21,7 @@ public class DriverConverter {
 
     private final MapperFacade mapperFacade;
 
-    public TruckDriverDto toDto(Driver entity) {
-        return mapperFacade.map(entity, TruckDriverDto.class);
+    public DriverDto toDto(Driver entity) {
+        return mapperFacade.map(entity, DriverDto.class);
     }
 }

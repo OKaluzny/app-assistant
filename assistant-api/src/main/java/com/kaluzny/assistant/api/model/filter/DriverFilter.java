@@ -1,12 +1,12 @@
 package com.kaluzny.assistant.api.model.filter;
 
-import com.kaluzny.assistant.api.model.dto.TruckDriverDto;
+import com.kaluzny.assistant.api.model.dto.DriverDto;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- * Describes filter model for {@link TruckDriverDto} page resource.
+ * Describes filter model for {@link DriverDto} page resource.
  *
  * @author Oleg Kaluzny
  */

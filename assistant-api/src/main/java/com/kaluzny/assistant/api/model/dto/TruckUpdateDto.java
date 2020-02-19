@@ -28,7 +28,7 @@ public class TruckUpdateDto implements Diffable<TruckUpdateDto> {
     private String model;
 
     @ApiModelProperty(value = "List of a truck drivers.", required = true)
-    private List<TruckDriverDto> drivers = new ArrayList<>();
+    private List<DriverDto> drivers = new ArrayList<>();
 
     @ApiModelProperty(value = "Owner", required = true)
     private OwnerDto truckOwner;

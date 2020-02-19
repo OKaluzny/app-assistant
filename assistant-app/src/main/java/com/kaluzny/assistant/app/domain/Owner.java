@@ -34,6 +34,6 @@ public class Owner {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
-    @OrderBy("id asc")
+    @OrderBy("id desc")
     private List<Truck> trucks = new ArrayList<>();
 }

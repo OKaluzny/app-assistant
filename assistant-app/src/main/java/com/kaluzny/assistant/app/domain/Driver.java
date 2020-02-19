@@ -37,6 +37,6 @@ public class Driver {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "driver_id", referencedColumnName = "id")
-    @OrderBy("id asc")
+    @OrderBy("id desc")
     private List<Address> addresses = new ArrayList<>();
 }

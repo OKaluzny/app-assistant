@@ -33,7 +33,7 @@ public class TruckDto implements Diffable<TruckDto> {
     private String model;
 
     @ApiModelProperty(value = "List of a truck drivers.", required = true)
-    private List<TruckDriverDto> drivers = new ArrayList<>();
+    private List<DriverDto> drivers = new ArrayList<>();
 
     @ApiModelProperty(value = "Owner of a truck.", required = true)
     private OwnerDto owner;

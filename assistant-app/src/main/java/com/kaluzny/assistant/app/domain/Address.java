@@ -20,6 +20,9 @@ public class Address {
     @SequenceGenerator(name = "addresses_seq", sequenceName = "addresses_seq", allocationSize = 1)
     private Long id;
 
+    @Column(name = "address_has_active")
+    private boolean addressHasActive;
+
     @Column(name = "country")
     private String country;
 

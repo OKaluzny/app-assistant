@@ -3,6 +3,7 @@ package com.kaluzny.assistant.api.model.dto;
 import com.kaluzny.assistant.api.utils.DiffBuilderUtils;
 
 import io.swagger.annotations.ApiModelProperty;
+import javax.persistence.Column;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.apache.commons.lang3.builder.DiffResult;
@@ -19,6 +20,9 @@ public class AddressDto implements Diffable<AddressDto> {
 
     @ApiModelProperty(value = "Unique identifier a Address.", example = "1")
     private Long id;
+
+    @ApiModelProperty(value = "active address of an employee.", example = "true")
+    private boolean addressHasActive;
 
     @ApiModelProperty(value = "country of an employee.", example = "Ukraine")
     private String country;

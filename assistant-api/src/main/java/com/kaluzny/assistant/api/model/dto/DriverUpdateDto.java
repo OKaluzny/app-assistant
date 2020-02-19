@@ -31,7 +31,7 @@ public class DriverUpdateDto implements Diffable<DriverUpdateDto> {
     private TruckDto truck;
 
     @ApiModelProperty(value = "List of a addresses.", required = true)
-    private List<AddressDto> addresses = new ArrayList<>();
+    private List<AddressUpdateDto> addresses = new ArrayList<>();
 
     @Override
     public DiffResult diff(DriverUpdateDto obj) {

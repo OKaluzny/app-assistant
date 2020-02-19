@@ -22,7 +22,7 @@ public class AddressDto implements Diffable<AddressDto> {
     private Long id;
 
     @ApiModelProperty(value = "active address of an employee.", example = "true")
-    private boolean addressHasActive;
+    private Boolean addressHasActive;
 
     @ApiModelProperty(value = "country of an employee.", example = "Ukraine")
     private String country;

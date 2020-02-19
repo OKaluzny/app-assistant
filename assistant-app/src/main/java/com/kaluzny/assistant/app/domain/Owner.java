@@ -32,7 +32,7 @@ public class Owner {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     @OrderBy("id desc")
     private List<Truck> trucks = new ArrayList<>();

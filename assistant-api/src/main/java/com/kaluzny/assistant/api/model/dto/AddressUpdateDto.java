@@ -18,7 +18,7 @@ import org.apache.commons.lang3.builder.Diffable;
 public class AddressUpdateDto implements Diffable<AddressUpdateDto> {
 
     @ApiModelProperty(value = "active address of an employee.", example = "true")
-    private boolean addressHasActive;
+    private Boolean addressHasActive;
 
     @ApiModelProperty(value = "country of an employee.", example = "Ukraine")
     private String country;

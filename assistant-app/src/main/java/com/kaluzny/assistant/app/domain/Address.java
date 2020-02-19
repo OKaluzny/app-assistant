@@ -21,7 +21,7 @@ public class Address {
     private Long id;
 
     @Column(name = "address_has_active")
-    private boolean addressHasActive;
+    private Boolean addressHasActive = Boolean.TRUE;
 
     @Column(name = "country")
     private String country;

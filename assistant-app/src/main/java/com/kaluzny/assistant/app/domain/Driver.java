@@ -36,7 +36,7 @@ public class Driver {
     private Truck truck;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "driver_id", referencedColumnName = "id")
     @OrderBy("id asc")
     private List<Address> addresses = new ArrayList<>();
 }

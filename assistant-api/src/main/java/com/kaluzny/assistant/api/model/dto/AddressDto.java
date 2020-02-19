@@ -3,9 +3,7 @@ package com.kaluzny.assistant.api.model.dto;
 import com.kaluzny.assistant.api.utils.DiffBuilderUtils;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 import lombok.experimental.Accessors;
 import org.apache.commons.lang3.builder.DiffResult;
 import org.apache.commons.lang3.builder.Diffable;
@@ -15,14 +13,12 @@ import org.apache.commons.lang3.builder.Diffable;
  *
  * @author Oleg Kaluzny
  */
-@Getter
-@Setter
-@ToString
+@Data
 @Accessors(chain = true)
 public class AddressDto implements Diffable<AddressDto> {
 
-    /*@ApiModelProperty(value = "Unique identifier a Address.", example = "1")
-    private Long id;*/
+    @ApiModelProperty(value = "Unique identifier a Address.", example = "1")
+    private Long id;
 
     @ApiModelProperty(value = "country of an employee.", example = "Ukraine")
     private String country;

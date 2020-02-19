@@ -1,25 +1,20 @@
 package com.kaluzny.assistant.api.model.dto;
 
 import com.kaluzny.assistant.api.utils.DiffBuilderUtils;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 import lombok.experimental.Accessors;
 import org.apache.commons.lang3.builder.DiffResult;
 import org.apache.commons.lang3.builder.Diffable;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author Oleg Kaluzny
  */
-@Getter
-@Setter
-@ToString
+@Data
 @Accessors(chain = true)
 public class TruckUpdateDto implements Diffable<TruckUpdateDto> {
 

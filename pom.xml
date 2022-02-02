@@ -37,7 +37,7 @@
         <liquibase.version>3.8.5</liquibase.version>
         <swagger.version>2.9.2</swagger.version>
         <lombok.version>1.18.10</lombok.version>
-        <postgresql.version>42.2.9</postgresql.version>
+        <postgresql.version>42.2.25</postgresql.version>
         <apache.commons.version>3.9</apache.commons.version>
         <!--  Plugin versions -->
         <surefire.version>2.22.2</surefire.version>

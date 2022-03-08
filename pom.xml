@@ -34,7 +34,7 @@
         <project.reporting.outputEncoding>${project.build.encoding}</project.reporting.outputEncoding>
         <!--  Dependency libraries versions -->
         <orika.version>1.5.4</orika.version>
-        <liquibase.version>3.8.5</liquibase.version>
+        <liquibase.version>4.8.0</liquibase.version>
         <swagger.version>2.9.2</swagger.version>
         <lombok.version>1.18.10</lombok.version>
         <postgresql.version>42.2.9</postgresql.version>

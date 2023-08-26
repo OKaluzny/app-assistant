@@ -13,12 +13,12 @@ import io.swagger.annotations.*;
 import javax.validation.constraints.NotNull;
 
 /**
- * CRUD REST API service for microservice-assistant.
+ * CRUD REST API service for app-assistant.
  *
  * @author Oleg Kaluzny
  */
-@Api(value = "TruckResource", tags = "microservice-assistant-truck")
-@SwaggerDefinition(tags = @Tag(name = "microservice-assistant", description = "Resource interface for microservice-assistant"))
+@Api(value = "TruckResource", tags = "app-assistant-truck")
+@SwaggerDefinition(tags = @Tag(name = "app-assistant", description = "Resource interface for microservice-assistant"))
 public interface TruckResource {
 
     /**
